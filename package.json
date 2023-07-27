@@ -1,0 +1,38 @@
+{
+	"private": true,
+	"version": "1.0.0",
+	"scripts": {
+		"worker": "wrangler pages dev --compatibility-date=2023-06-28 ./public",
+		"worker:remote": "wrangler pages dev --remote --compatibility-date=2023-06-28 ./public",
+		"build": "npm run clean && node esbuild.mjs prod",
+		"clean": "rm -rf public/dist",
+		"dev:build": "npm run clean && node esbuild.mjs dev",
+		"deploy": "npm run build && wrangler pages deploy ./public",
+		"test": "vitest",
+		"tail": "wrangler tail --format pretty"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20230724.0",
+		"@types/react": "^18.2.16",
+		"@types/react-dom": "^18.2.7",
+		"@typescript-eslint/eslint-plugin": "^6.2.0",
+		"@typescript-eslint/parser": "^6.2.0",
+		"esbuild": "^0.18.17",
+		"eslint": "^8.45.0",
+		"eslint-config-typescript": "^3.0.0",
+		"eslint-plugin-react-hooks": "^4.6.0",
+		"eslint-plugin-react-refresh": "^0.4.3",
+		"prettier": "^3.0.0",
+		"typescript": "^5.1.6",
+		"vitest": "^0.33.0",
+		"vitest-environment-miniflare": "^2.14.0",
+		"wrangler": "^3.3.0"
+	},
+	"dependencies": {
+		"@atomicjolt/lti": "1.0.0",
+		"hono": "^3.3.3",
+		"i18next": "^23.3.0",
+		"i18next-browser-languagedetector": "^7.1.0",
+		"jose": "^4.14.4"
+	}
+}

@@ -1,0 +1,12 @@
+compatibility_date = "2023-06-28"
+compatibility_flags = []
+main = "functions/lti/[[route]].ts"
+name = "atomic-lti-worker"
+
+kv_namespaces = [
+  {binding = "OAUTH_STATE", id = "xxx", preview_id = "xxx"},
+  {binding = "JWKS", id = "xxx", preview_id = "xxx"},
+  {binding = "REMOTE_JWKS", id = "xxx", preview_id = "xxx"},
+  {binding = "OIDC", id = "xxx", preview_id = "xxx"},
+]
+

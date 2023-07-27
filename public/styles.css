@@ -1,0 +1,95 @@
+.aj-centered-message {
+  max-width: 600px;
+  margin: 48px auto 0;
+  border: 1px solid #ccc;
+  padding: 24px 32px;
+  border-radius: 10px;
+}
+
+.aj-icon {
+  width: 24px;
+  color: #333;
+}
+
+.aj-title {
+  font-family: 'Lato', 'Helvetica Nue', Helvetica, Arial sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1;
+  gap: 12px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+}
+
+.u-flex {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.u-flex > * {
+  margin: 0;
+}
+
+.aj-text.aj-text--small {
+  font-weight: 400;
+  font-size: 13px;
+  margin-top: 20px;
+}
+
+.aj-text {
+  font-family: 'Lato', 'Helvetica Nue', Helvetica, Arial sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #333;
+  max-width: 600px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+}
+
+.aj-btn.aj-btn--blue:hover:enabled, a.aj-btn.aj-btn--blue:hover:enabled {
+    box-shadow: 0 3px 4px rgba(0, 50, 150, 0.3);
+    background-color: #2D7DAE;
+}
+
+.aj-btn:hover:enabled, a.aj-btn:hover:enabled {
+    cursor: pointer;
+    background-color: #efefef;
+}
+
+.aj-btn.aj-btn--blue:disabled {
+    opacity: 0.5;
+}
+
+.aj-btn.aj-btn--blue, a.aj-btn.aj-btn--blue {
+    font-family: "Lato", "Helvetica Nue", Helvetica, Arial sans-serif;
+    font-weight: 700;
+    background-color: #2D7DAE;
+    border: none;
+    font-size: 16px;
+    line-height: 27px;
+    text-align: left;
+    color: #ffffff;
+    border-radius: none;
+    border: 2px solid #2D7DAE;
+}
+
+.aj-btn, a.aj-btn {
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+    border-radius: 5px;
+    white-space: nowrap;
+    position: relative;
+    isolation: isolate;
+    padding: 0 12px;
+    text-decoration: none;
+}

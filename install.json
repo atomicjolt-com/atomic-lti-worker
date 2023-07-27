@@ -1,0 +1,124 @@
+{
+  "title": "Atomic LTI Worker",
+  "scopes": [
+    "https://purl.imsglobal.org/spec/lti-ags/scope/lineitem",
+    "https://purl.imsglobal.org/spec/lti-ags/scope/result.readonly",
+    "https://purl.imsglobal.org/spec/lti-ags/scope/score",
+    "https://purl.imsglobal.org/spec/lti-nrps/scope/contextmembership.readonly",
+    "https://purl.imsglobal.org/spec/lti-ags/scope/lineitem.readonly"
+  ],
+  "extensions": [
+    {
+      "domain": "https://atomic-lti-worker.atomicjolt.win",
+      "tool_id": "Atomic LTI Worker",
+      "platform": "canvas.instructure.com",
+      "settings": {
+        "text": "Atomic LTI Worker",
+        "icon_url": "https://atomic-lti-worker.atomicjolt.win/atomicjolt.png",
+        "placements": [
+          {
+            "text": "Atomic LTI Worker",
+            "enabled": true,
+            "icon_url": "https://atomic-lti-worker.atomicjolt.win/atomicjolt.png",
+            "placement": "editor_button",
+            "visibility": "admins",
+            "message_type": "LtiDeepLinkingRequest",
+            "target_link_uri": "https://atomic-lti-worker.atomicjolt.win/lti/launch",
+            "canvas_icon_class": "icon-lti"
+          },
+          {
+            "text": "Atomic LTI Worker",
+            "enabled": true,
+            "icon_url": "https://atomic-lti-worker.atomicjolt.win/atomicjolt.png",
+            "placement": "course_navigation",
+            "visibility": "admins",
+            "message_type": "LtiResourceLinkRequest",
+            "target_link_uri": "https://atomic-lti-worker.atomicjolt.win/lti/launch",
+            "canvas_icon_class": "icon-lti"
+          },
+          {
+            "text": "Atomic LTI Worker",
+            "enabled": true,
+            "icon_url": "https://atomic-lti-worker.atomicjolt.win/atomicjolt.png",
+            "placement": "user_navigation",
+            "message_type": "LtiResourceLinkRequest",
+            "target_link_uri": "https://atomic-lti-worker.atomicjolt.win/lti/launch"
+          },
+          {
+            "text": "Atomic LTI Worker",
+            "enabled": true,
+            "icon_url": "https://atomic-lti-worker.atomicjolt.win/atomicjolt.png",
+            "placement": "migration_selection",
+            "message_type": "LtiDeepLinkingRequest",
+            "selection_width": 892,
+            "target_link_uri": "https://atomic-lti-worker.atomicjolt.win/lti/launch",
+            "selection_height": 800
+          },
+          {
+            "text": "Atomic LTI Worker",
+            "enabled": true,
+            "icon_url": "https://atomic-lti-worker.atomicjolt.win/atomicjolt.png",
+            "placement": "link_selection",
+            "message_type": "LtiDeepLinkingRequest",
+            "selection_width": 892,
+            "target_link_uri": "https://atomic-lti-worker.atomicjolt.win/lti/launch",
+            "selection_height": 800
+          },
+          {
+            "text": "Atomic LTI Worker",
+            "enabled": true,
+            "icon_url": "https://atomic-lti-worker.atomicjolt.win/atomicjolt.png",
+            "placement": "homework_submission",
+            "message_type": "LtiDeepLinkingRequest",
+            "selection_width": 892,
+            "target_link_uri": "https://atomic-lti-worker.atomicjolt.win/lti/launch",
+            "selection_height": 800
+          },
+          {
+            "text": "Atomic LTI Worker",
+            "enabled": true,
+            "icon_url": "https://atomic-lti-worker.atomicjolt.win/atomicjolt.png",
+            "placement": "assignment_selection",
+            "message_type": "LtiDeepLinkingRequest",
+            "selection_width": 892,
+            "target_link_uri": "https://atomic-lti-worker.atomicjolt.win/lti/launch",
+            "selection_height": 800
+          },
+          {
+            "text": "Atomic LTI Worker",
+            "enabled": true,
+            "icon_url": "https://atomic-lti-worker.atomicjolt.win/atomicjolt.png",
+            "placement": "account_navigation",
+            "message_type": "LtiResourceLinkRequest",
+            "target_link_uri": "https://atomic-lti-worker.atomicjolt.win/lti/launch"
+          }
+        ],
+        "consumer_key": "ltiworker",
+        "consumer_secret": "6d6bd2f1c2adb3b65ef1f7ba12eb3af7c5ab313c8b663c75e9633690c1a6f8aec532738b86ec7a9c0e67b9e44d7da1aa1ddfd3fe3b613dcfdc28d94be87b31f2",
+        "content_migration": {
+          "export_start_url": "https://atomic-lti-worker.atomicjolt.win/api/ims_exports.json",
+          "import_start_url": "https://atomic-lti-worker.atomicjolt.win/api/ims_imports.json"
+        }
+      },
+      "privacy_level": "public"
+    }
+  ],
+  "description": "Atomic LTI Worker",
+  "custom_fields": {
+    "canvas_sis_id": "$Canvas.user.sisid",
+    "canvas_user_id": "$Canvas.user.id",
+    "canvas_course_id": "$Canvas.course.id",
+    "canvas_term_name": "$Canvas.term.name",
+    "canvas_account_id": "$Canvas.account.id",
+    "canvas_api_domain": "$Canvas.api.domain",
+    "canvas_section_ids": "$Canvas.course.sectionIds",
+    "context_id_history": "$Context.id.history",
+    "canvas_account_name": "$Canvas.account.name",
+    "canvas_assignment_id": "$Canvas.assignment.id",
+    "canvas_user_timezone": "$Person.address.timezone",
+    "canvas_root_account_id": "$Canvas.rootAccount.id"
+  },
+  "public_jwk_url": "https://atomic-lti-worker.atomicjolt.win/lti/jwks.json",
+  "target_link_uri": "https://atomic-lti-worker.atomicjolt.win/lti/launch",
+  "oidc_initiation_url": "https://atomic-lti-worker.atomicjolt.win/lti/init"
+}
