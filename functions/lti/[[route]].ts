@@ -4,11 +4,11 @@ import { HTTPException } from 'hono/http-exception';
 import { handle } from 'hono/cloudflare-pages'
 import { etag } from 'hono/etag';
 
-import { EnvBindings } from '../../functions_src/types';
-import { jwks } from '../../functions_src/endpoints/jwks';
-import { init } from '../../functions_src/endpoints/init';
-import { redirect } from '../../functions_src/endpoints/redirect';
-import { launch } from '../../functions_src/endpoints/launch';
+import { EnvBindings } from '../../server/types';
+import { jwks } from '../../server/endpoints/jwks';
+import { init } from '../../server/endpoints/init';
+import { redirect } from '../../server/endpoints/redirect';
+import { launch } from '../../server/endpoints/launch';
 
 // Export app for testing
 export const app = new Hono<{ Bindings: EnvBindings }>().basePath('/lti')
