@@ -21,4 +21,3 @@ export function getPlatformOIDCUrl(iss: string): string {
   const platform: Platform = PLATFORMS[iss];
   return platform.oidcUrl;
 }
-

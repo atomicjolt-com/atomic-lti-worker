@@ -11,21 +11,13 @@ import { setOIDC } from '../models/oidc';
 
 const init = new Hono<{ Bindings: EnvBindings }>();
 
-function writeCookies(c: Context, state: string) {
-	setCookie(c, OPEN_ID_STORAGE_COOKIE, '1', {
+function writeCookie(c: Context, name: string, value: string, maxAge: number) {
+	setCookie(c, name, value, {
 		path: '/',
 		secure: true,
 		httpOnly: false,
-		maxAge: 356 * 24 * 60 * 60,
-		expires: new Date(Date.now() + 356 * 24 * 60 * 60 * 1000),
-		sameSite: 'None',
-	});
-
-	setCookie(c, `${OPEN_ID_COOKIE_PREFIX}${state}`, '1', {
-		path: '/',
-		secure: true,
-		httpOnly: false,
-		maxAge: 60,
+		maxAge: maxAge,
+		expires: new Date(Date.now() + maxAge * 1000),
 		sameSite: 'None',
 	});
 }
@@ -48,7 +40,8 @@ init.post('/', async (c: Context) => {
 
 	await setOIDC(c, state, oidcState);
 
-	writeCookies(c, state);
+	writeCookie(c, OPEN_ID_STORAGE_COOKIE, '1', 356 * 24 * 60 * 60);
+	writeCookie(c, `${OPEN_ID_COOKIE_PREFIX}${state}`, '1', 60);
 
 	const canUseCookies = getCookie(c, OPEN_ID_STORAGE_COOKIE);
 	if (canUseCookies) {
