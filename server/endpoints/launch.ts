@@ -1,10 +1,11 @@
 import { Hono } from 'hono';
 import type { Context } from 'hono';
 import { HTTPException } from 'hono/http-exception';
-import type { IdTokenResult, LaunchSettings, LTIRequestBody } from '@atomicjolt/lti/src/types';
-import { getLtiStorageParams } from '@atomicjolt/lti/src/libs/platforms';
-import { OPEN_ID_COOKIE_PREFIX } from '@atomicjolt/lti/src/libs/constants';
-import { validateIdTokenContents } from '@atomicjolt/lti/src/libs/lti_validation';
+import type { LaunchSettings } from '@atomicjolt/lti-client/src/types';
+import type { IdTokenResult, LTIRequestBody } from '@atomicjolt/lti-server/src/types';
+import { getLtiStorageParams } from '@atomicjolt/lti-server/src/libs/platforms';
+import { OPEN_ID_COOKIE_PREFIX } from '@atomicjolt/lti-server/src/libs/constants';
+import { validateIdTokenContents } from '@atomicjolt/lti-server/src/libs/lti_validation';
 import { validateRequest } from '../libs/validate';
 
 import type { EnvBindings } from '../types';

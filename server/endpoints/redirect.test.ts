@@ -1,5 +1,5 @@
 import { expect, it, describe } from 'vitest';
-import { OPEN_ID_STORAGE_COOKIE } from '@atomicjolt/lti/src/libs/constants';
+import { OPEN_ID_STORAGE_COOKIE } from '@atomicjolt/lti-server/src/libs/constants';
 
 import { app } from '../../functions/lti/[[route]]';
 import { setupValidState } from '../test/state_helper';

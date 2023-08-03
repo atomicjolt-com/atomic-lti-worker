@@ -29,7 +29,8 @@
 		"wrangler": "^3.3.0"
 	},
 	"dependencies": {
-		"@atomicjolt/lti": "1.0.0",
+		"@atomicjolt/lti-server": "file:../atomicjolt-lti-server",
+		"@atomicjolt/lti-client": "file:../atomicjolt-lti-client",
 		"hono": "^3.3.3",
 		"i18next": "^23.3.0",
 		"i18next-browser-languagedetector": "^7.1.0",

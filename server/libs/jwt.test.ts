@@ -1,6 +1,6 @@
 import { importPKCS8 } from 'jose';
 import { expect, it, describe, afterEach } from 'vitest';
-import { IdToken } from '@atomicjolt/lti/src/libs/lti_definitions';
+import { IdToken } from '@atomicjolt/lti-client/src/libs/lti_definitions';
 import type { KeySet } from '@atomicjolt/lti/src/types';
 
 import {

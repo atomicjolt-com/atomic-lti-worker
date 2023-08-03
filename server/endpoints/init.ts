@@ -1,8 +1,8 @@
 import { Hono } from 'hono';
 import type { Context } from 'hono';
 import { getCookie, setCookie } from 'hono/cookie';
-import { buildOIDCState } from '@atomicjolt/lti/src/libs/oidc';
-import { OPEN_ID_COOKIE_PREFIX, OPEN_ID_STORAGE_COOKIE } from '@atomicjolt/lti/src/libs/constants';
+import { buildInit } from '@atomicjolt/lti-server/src/libs/oidc';
+import { OPEN_ID_COOKIE_PREFIX, OPEN_ID_STORAGE_COOKIE } from '@atomicjolt/lti-server/src/libs/constants';
 
 import type { EnvBindings } from '../types';
 import { getPlatformOIDCUrl } from '../libs/platforms';
@@ -35,13 +35,14 @@ init.post('/', async (c: Context) => {
 			status: 401,
 		});
 	};
-	const platformOIDCUrl = getPlatformOIDCUrl(iss);
-	const { state, oidcState, url, settings } = buildOIDCState(requestUrl, clientId, loginHint, ltiMessageHint, target, platformOIDCUrl);
 
-	await setOIDC(c, state, oidcState);
+	const platformOIDCUrl = getPlatformOIDCUrl(iss);
+	const { oidcState, url, settings } = buildInit(requestUrl, clientId, loginHint, ltiMessageHint, target, platformOIDCUrl);
+
+	await setOIDC(c, oidcState.state, oidcState);
 
 	writeCookie(c, OPEN_ID_STORAGE_COOKIE, '1', 356 * 24 * 60 * 60);
-	writeCookie(c, `${OPEN_ID_COOKIE_PREFIX}${state}`, '1', 60);
+	writeCookie(c, `${OPEN_ID_COOKIE_PREFIX}${oidcState.state}`, '1', 60);
 
 	const canUseCookies = getCookie(c, OPEN_ID_STORAGE_COOKIE);
 	if (canUseCookies) {

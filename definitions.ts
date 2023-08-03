@@ -5,7 +5,7 @@ import {
   CANVAS_BETA_PUBLIC_JWKS_URL,
   CANVAS_BETA_AUTH_TOKEN_URL,
   CANVAS_BETA_OIDC_URL,
-} from '@atomicjolt/lti/src/libs/lti_definitions';
+} from '@atomicjolt/lti-client/src/libs/lti_definitions';
 import type { Platforms } from '@atomicjolt/lti/src/types';
 
 export const APP_NAME = 'Atomic LTI';

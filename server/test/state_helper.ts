@@ -2,7 +2,7 @@ import { importPKCS8, KeyLike } from 'jose';
 import {
   CANVAS_PUBLIC_JWKS_URL,
   IdToken,
-} from '@atomicjolt/lti/src/libs/lti_definitions';
+} from '@atomicjolt/lti-client/src/libs/lti_definitions';
 import type { OIDCState } from '@atomicjolt/lti/src/types';
 
 import { signJwtPrivate, alg } from '../libs/jwt';

@@ -2,8 +2,8 @@ import { expect, it, describe } from 'vitest';
 import {
   LTI_VERSION,
   MESSAGE_TYPE,
-} from '@atomicjolt/lti/src/libs/lti_definitions';
-import { OPEN_ID_COOKIE_PREFIX } from '@atomicjolt/lti/src/libs/constants';
+} from '@atomicjolt/lti-client/src/libs/lti_definitions';
+import { OPEN_ID_COOKIE_PREFIX } from '@atomicjolt/lti-server/src/libs/constants';
 
 import { app } from '../../functions/lti/[[route]]';
 import { signJwtPrivate } from '../libs/jwt';
