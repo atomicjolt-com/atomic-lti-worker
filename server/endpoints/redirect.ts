@@ -2,7 +2,7 @@ import { Hono } from 'hono';
 import type { Context } from 'hono';
 import { HTTPException } from 'hono/http-exception';
 import { TARGET_LINK_URI_CLAIM } from '@atomicjolt/lti-client/src/libs/lti_definitions';
-import type { RedirectParams, LTIRequestBody, IdTokenResult } from '@atomicjolt/lti/src/types';
+import type { RedirectParams, LTIRequestBody, IdTokenResult } from '@atomicjolt/lti-server/src/types';
 
 import { validateRequest } from '../libs/validate';
 import redirectHtml from '../html/redirect_html';

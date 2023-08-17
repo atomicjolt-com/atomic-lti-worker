@@ -1,12 +1,12 @@
 import 'vite/client';
-import { KVNamespace } from '@cloudflare/workers-types';
+import { KVNamespace, DurableObjectNamespace } from '@cloudflare/workers-types';
 
 export type EnvBindings = {
   OIDC: KVNamespace;
   JWKS: KVNamespace;
   REMOTE_JWKS: KVNamespace;
   JWT_KEYS: KVNamespace;
-  // OIDC_STATE: DurableObjectNamespace;
+  OIDC_STATE: DurableObjectNamespace;
 }
 
 export interface ResponseError {

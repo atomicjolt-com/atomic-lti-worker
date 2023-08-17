@@ -1,5 +1,5 @@
 import type { Context } from 'hono';
-import type { OIDCState, IdTokenResult } from '@atomicjolt/lti/src/types';
+import type { OIDCState, IdTokenResult } from '@atomicjolt/lti-server/src/types';
 
 import { validateIdToken } from './jwt';
 import { ALLOWED_LAUNCH_TIME } from '../../definitions';

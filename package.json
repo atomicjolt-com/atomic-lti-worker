@@ -12,27 +12,27 @@
 		"tail": "wrangler tail --format pretty"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20230724.0",
-		"@types/react": "^18.2.16",
+		"@cloudflare/workers-types": "^4.20230814.0",
+		"@types/react": "^18.2.20",
 		"@types/react-dom": "^18.2.7",
-		"@typescript-eslint/eslint-plugin": "^6.2.0",
-		"@typescript-eslint/parser": "^6.2.0",
-		"esbuild": "^0.18.17",
-		"eslint": "^8.45.0",
+		"@typescript-eslint/eslint-plugin": "^6.4.0",
+		"@typescript-eslint/parser": "^6.4.0",
+		"esbuild": "^0.19.2",
+		"eslint": "^8.47.0",
 		"eslint-config-typescript": "^3.0.0",
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"eslint-plugin-react-refresh": "^0.4.3",
-		"prettier": "^3.0.0",
+		"prettier": "^3.0.2",
 		"typescript": "^5.1.6",
 		"vitest": "^0.33.0",
 		"vitest-environment-miniflare": "^2.14.0",
 		"wrangler": "^3.3.0"
 	},
 	"dependencies": {
-		"@atomicjolt/lti-server": "file:../atomicjolt-lti-server",
-		"@atomicjolt/lti-client": "file:../atomicjolt-lti-client",
-		"hono": "^3.3.3",
-		"i18next": "^23.3.0",
+		"@atomicjolt/lti-server": "^1.0.0",
+		"@atomicjolt/lti-client": "^2.0.0",
+		"hono": "^3.4.3",
+		"i18next": "^23.4.4",
 		"i18next-browser-languagedetector": "^7.1.0",
 		"jose": "^4.14.4"
 	}

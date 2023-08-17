@@ -39,7 +39,7 @@ init.post('/', async (c: Context) => {
 	const platformOIDCUrl = getPlatformOIDCUrl(iss);
 	const { oidcState, url, settings } = buildInit(requestUrl, clientId, loginHint, ltiMessageHint, target, platformOIDCUrl);
 
-	await setOIDC(c, oidcState.state, oidcState);
+	await setOIDC(c, oidcState);
 
 	writeCookie(c, OPEN_ID_STORAGE_COOKIE, '1', 356 * 24 * 60 * 60);
 	writeCookie(c, `${OPEN_ID_COOKIE_PREFIX}${oidcState.state}`, '1', 60);

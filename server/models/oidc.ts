@@ -1,16 +1,22 @@
 import type { Context } from 'hono';
-import type { OIDCState } from '@atomicjolt/lti/src/types';
+import type { OIDCState } from '@atomicjolt/lti-server/src/types';
 import { ALLOWED_LAUNCH_TIME } from '../../definitions';
 
-export async function setOIDC(c: Context, state: string, oidcState: OIDCState) {
+export async function setOIDC(c: Context, oidcState: OIDCState) {
+  // const id = c.env.OIDC_STATE.idFromName(oidcState.state);
+  // const obj = c.env.OIDC_STATE.get(id);
+  // const resp = await obj.fetch(c.req.url);
   await c.env.OIDC.put(
-    state,
+    oidcState.state,
     JSON.stringify(oidcState),
     { expirationTtl: ALLOWED_LAUNCH_TIME }
   );
 }
 
 export async function getOIDC(c: Context, state: string) {
+  // const id = c.env.OIDC_STATE.idFromName(state);
+  // const obj = c.env.OIDC_STATE.get(id);
+  // const resp = await obj.fetch(c.req.url);
   const kvState = await c.env.OIDC.get(state);
   if (!kvState) {
     throw new Error('Missing LTI state. Please launch the application again.');

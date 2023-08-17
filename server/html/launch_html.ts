@@ -1,4 +1,4 @@
-import type { LaunchSettings } from '@atomicjolt/lti/src/types';
+import type { LaunchSettings } from '@atomicjolt/lti-client/src/types';
 import metafile from '../../public/dist/metafile.json';
 
 export default function launchHtml(settings: LaunchSettings) {

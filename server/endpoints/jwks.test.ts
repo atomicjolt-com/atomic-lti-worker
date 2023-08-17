@@ -1,5 +1,5 @@
 import { expect, it, describe } from 'vitest';
-import type { JWKS_RESULT } from '@atomicjolt/lti/src/types';
+import type { JWKS_RESULT } from '@atomicjolt/lti-server/src/types';
 
 const env = getMiniflareBindings();
 import { app } from '../../functions/lti/[[route]]';

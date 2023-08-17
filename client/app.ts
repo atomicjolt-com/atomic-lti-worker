@@ -1,4 +1,4 @@
-import { ltiLaunch } from '@atomicjolt/lti/src/client/launch';
+import { ltiLaunch } from '@atomicjolt/lti-client/src/client/launch';
 
 ltiLaunch(window.LAUNCH_SETTINGS).then((valid) => {
   if (valid) {
