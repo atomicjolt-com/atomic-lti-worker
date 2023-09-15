@@ -32,15 +32,13 @@ app.route('/launch', launch);
 
 // Error handling
 app.onError((err, c) => {
-  console.log('handling on error')
+  console.error('handling on error', err);
   if (err instanceof HTTPException) {
     return err.getResponse()
   }
   console.error(`${err}`)
   return c.text(err.toString());
-})
-
-
+});
 
 app.notFound(c => c.text('Not found', 404));
 

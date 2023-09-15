@@ -36,10 +36,7 @@ launch.post('/', async (c: Context) => {
 
   // Check to see if a cookie exists for the state
   let stateVerified = false;
-  console.log('all cookie', getCookie(c))
   const validCookie = getCookie(c, `${OPEN_ID_COOKIE_PREFIX}${body.state}`);
-  console.log('cookie:', `${OPEN_ID_COOKIE_PREFIX}${body.state}`)
-  console.log('validCookie', validCookie)
   if (validCookie) {
     stateVerified = true;
   }

@@ -15,13 +15,13 @@ redirect.post('/', async (c: Context) => {
   const host = (new URL(c.req.url)).host;
   const body = (await c.req.parseBody()) as LTIRequestBody;
   let idTokenResult: IdTokenResult;
-
   try {
     idTokenResult = await validateRequest(c, body.state, body.id_token);
     if (!idTokenResult || !idTokenResult.token) {
       throw new Error('Missing LTI token.');
     }
   } catch (e) {
+    console.error(e);
     const res = new Response((e as Error).message, {
       status: 401,
     });
