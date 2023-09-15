@@ -43,6 +43,8 @@ export const test_id_token: IdToken = {
   },
   'aud': clientId,
   'azp': clientId,
+  'exp': (Date.now() / 1000) + (60 * 15), // 15 minutes from now
+  'iat': Date.now() / 1000,
   'https://purl.imsglobal.org/spec/lti/claim/deployment_id': '22108:a8a76fb8fbcc2d09787dafd28564e2ecdab51f11',
   'iss': 'https://canvas.instructure.com',
   'nonce': 'ff3719333ec73654a962018adf0c0fe313531ec78fb5a7f5ad4188f786d16eb1ff5b6f3fbcbac00acdc1211b78afd1a01d3f304a84fe7b6da0a7ab0d93c16e0e',
@@ -152,7 +154,6 @@ export const test_id_token: IdToken = {
       'errors': {}
     }
   },
-  'https://www.instructure.com/placement': 'course_navigation'
 }
 
 type JwtPieces = { keySet: KeySet, signed: string; };
