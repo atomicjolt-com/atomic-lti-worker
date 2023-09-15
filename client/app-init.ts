@@ -1,3 +1,5 @@
-import { InitOIDCLaunch } from '@atomicjolt/lti-client/src/client/init';
+import { initOIDCLaunch } from '@atomicjolt/lti-client';
+import type { InitSettings } from '@atomicjolt/lti-client/types';
 
-InitOIDCLaunch(window.INIT_SETTINGS);
+const initSettings: InitSettings = window.INIT_SETTINGS;
+initOIDCLaunch(initSettings);

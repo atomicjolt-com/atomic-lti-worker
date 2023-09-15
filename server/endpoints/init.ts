@@ -4,7 +4,7 @@ import { getCookie, setCookie } from 'hono/cookie';
 import { buildInit } from '@atomicjolt/lti-server/src/libs/oidc';
 import { OPEN_ID_COOKIE_PREFIX, OPEN_ID_STORAGE_COOKIE } from '@atomicjolt/lti-server/src/libs/constants';
 
-import type { EnvBindings } from '../types';
+import type { EnvBindings } from '../../types';
 import { getPlatformOIDCUrl } from '../libs/platforms';
 import initHtml from '../html/init_html';
 import { setOIDC } from '../models/oidc';

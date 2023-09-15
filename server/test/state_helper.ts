@@ -2,7 +2,7 @@ import { importPKCS8, KeyLike } from 'jose';
 import {
   CANVAS_PUBLIC_JWKS_URL,
   IdToken,
-} from '@atomicjolt/lti-client/src/libs/lti_definitions';
+} from '@atomicjolt/lti-types';
 import type { OIDCState } from '@atomicjolt/lti-server/src/types';
 
 import { signJwtPrivate, alg } from '../libs/jwt';
@@ -11,7 +11,7 @@ import {
   generateKeySet,
   keySetsToJwks,
 } from '../libs/jwt';
-import type { EnvBindings } from '../types';
+import type { EnvBindings } from '../../types';
 
 export async function storeState(env: EnvBindings, state: string, nonce: string) {
   const oidcState: OIDCState = {

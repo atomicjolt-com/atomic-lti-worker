@@ -1,4 +1,4 @@
-import { test } from 'vitest';
+import { test, expect } from 'vitest';
 import { getOIDC } from './oidc';
 
 test('getOIDC returns OIDC state', async (t) => {
@@ -24,7 +24,7 @@ test('getOIDC returns OIDC state', async (t) => {
 
   const result = await getOIDC(c, state);
 
-  t.deepEqual(result, oidcState);
+  expect(result).toEqual(oidcState);
 });
 
 test('getOIDC throws error for missing OIDC state', async (t) => {
@@ -39,10 +39,7 @@ test('getOIDC throws error for missing OIDC state', async (t) => {
     },
   } as any;
 
-  try {
-    await getOIDC(c, state);
-    t.fail('Expected getOIDC to throw an error');
-  } catch (err) {
-    t.equal(err.message, 'Missing LTI state. Please launch the application again.');
-  }
+  await expect(getOIDC(c, state)).rejects.toThrow('Missing LTI state. Please launch the application again.');
+
+
 });

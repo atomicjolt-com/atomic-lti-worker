@@ -1,12 +1,12 @@
 import { Hono } from 'hono';
 import type { Context } from 'hono';
 import { HTTPException } from 'hono/http-exception';
-import { TARGET_LINK_URI_CLAIM } from '@atomicjolt/lti-client/src/libs/lti_definitions';
+import { TARGET_LINK_URI_CLAIM } from '@atomicjolt/lti-types';
 import type { RedirectParams, LTIRequestBody, IdTokenResult } from '@atomicjolt/lti-server/src/types';
 
 import { validateRequest } from '../libs/validate';
 import redirectHtml from '../html/redirect_html';
-import type { EnvBindings } from '../types';
+import type { EnvBindings } from '../../types';
 
 const redirect = new Hono<{ Bindings: EnvBindings }>();
 const DEFAULT_DEEP_LINK_PATH = '/lti/launch';

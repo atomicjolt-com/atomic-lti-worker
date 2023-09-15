@@ -4,7 +4,8 @@
 		"module": "es2022",
 		"target": "es2021",
 		"lib": [
-			"es2021"
+			"es2021",
+			"DOM"
 		],
 		"esModuleInterop": true,
 		"strict": true,
@@ -22,9 +23,17 @@
 		"skipLibCheck": true
 	},
 	"types": [
-    "@cloudflare/workers-types",
-    "node"
-  ],
-	"include": ["src"],
-	"exclude": ["node_modules", "dist", "test"]
+		"@cloudflare/workers-types",
+		"node"
+	],
+	"include": [
+		"client",
+		"server",
+		"types.d.ts"
+	],
+	"exclude": [
+		"node_modules",
+		"dist",
+		"test"
+	]
 }

@@ -1,5 +1,6 @@
 import 'vite/client';
 import { KVNamespace, DurableObjectNamespace } from '@cloudflare/workers-types';
+import type { InitSettings, LaunchSettings } from '@atomicjolt/lti-client/types';
 
 export type EnvBindings = {
   OIDC: KVNamespace;
@@ -16,5 +17,9 @@ export interface ResponseError {
 declare global {
   function setupMiniflareIsolatedStorage(): Function;
   function getMiniflareBindings(): EnvBindings;
+  interface Window {
+    INIT_SETTINGS: InitSettings;
+    LAUNCH_SETTINGS: LaunchSettings;
+  }
 }
 

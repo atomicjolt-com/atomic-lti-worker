@@ -4,7 +4,7 @@ import { HTTPException } from 'hono/http-exception';
 import { handle } from 'hono/cloudflare-pages'
 import { etag } from 'hono/etag';
 
-import { EnvBindings } from '../../server/types';
+import { EnvBindings } from '../../types';
 import { jwks } from '../../server/endpoints/jwks';
 import { init } from '../../server/endpoints/init';
 import { redirect } from '../../server/endpoints/redirect';

@@ -2,15 +2,16 @@ import { expect, it, describe } from 'vitest';
 import {
   LTI_VERSION,
   MESSAGE_TYPE,
-} from '@atomicjolt/lti-client/src/libs/lti_definitions';
+} from '@atomicjolt/lti-types';
 import { OPEN_ID_COOKIE_PREFIX } from '@atomicjolt/lti-server/src/libs/constants';
 
+import type { EnvBindings } from '../../types';
 import { app } from '../../functions/lti/[[route]]';
 import { signJwtPrivate } from '../libs/jwt';
 import { test_id_token, genJwt } from '../libs/jwt.test';
 import { setupValidState, storeState } from '../test/state_helper';
 
-const env = getMiniflareBindings();
+const env: EnvBindings = getMiniflareBindings();
 
 describe('launch', () => {
   it('returns a 200 with verified false when state is not present', async () => {
@@ -64,7 +65,7 @@ describe('launch', () => {
         method: 'POST',
         headers: {
           Accept: '*/*',
-          Cookie: `${OPEN_ID_COOKIE_PREFIX}${state}`,
+          Cookie: `${OPEN_ID_COOKIE_PREFIX}${state}=1`,
         },
         body: body,
       },
@@ -134,6 +135,7 @@ describe('launch', () => {
     // Test Sends LTI Version that is NOT 1.3
     it('returns an invalid version message', async () => {
       const token = { ...test_id_token };
+      // @ts-expect-error
       token[LTI_VERSION] = '11.2.0';
       const body: BodyInit = new FormData();
       const { signed } = await genJwt(token);
@@ -161,6 +163,7 @@ describe('launch', () => {
     // Test Delivers Launch Without LTI Version
     it('returns an invalid version message when version is empty', async () => {
       const token = { ...test_id_token };
+      // @ts-expect-error
       token[LTI_VERSION] = '';
       const { state } = await setupValidState(env, test_id_token);
       const body: BodyInit = new FormData();
@@ -229,6 +232,7 @@ describe('launch', () => {
       const { state, body, privateKey } = await setupValidState(env, test_id_token);
       const runTest = async (field: string | number) => {
         const new_id_token = { ...test_id_token };
+        // @ts-expect-error
         delete new_id_token[field];
 
         const signed = await signJwtPrivate(privateKey, new_id_token);
@@ -278,13 +282,12 @@ describe('launch', () => {
         method: 'POST',
         headers: {
           Accept: '*/*',
-          Cookie: `${OPEN_ID_COOKIE_PREFIX}${state}`,
+          Cookie: `${OPEN_ID_COOKIE_PREFIX}${state}=1`,
         },
         body: body,
       },
     );
     const resp = await app.fetch(req, env);
-
     expect(resp.status).toBe(200);
     const text = await resp.text();
     expect(text).toContain('"stateVerified":true');

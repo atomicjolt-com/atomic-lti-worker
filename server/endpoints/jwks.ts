@@ -1,6 +1,6 @@
 import { Hono } from 'hono';
 
-import { EnvBindings } from '../types';
+import { EnvBindings } from '../../types';
 import { getJwks } from '../libs/jwt';
 
 const jwks = new Hono<{ Bindings: EnvBindings }>();

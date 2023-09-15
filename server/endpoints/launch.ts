@@ -1,14 +1,15 @@
 import { Hono } from 'hono';
 import type { Context } from 'hono';
+import { getCookie } from 'hono/cookie';
 import { HTTPException } from 'hono/http-exception';
-import type { LaunchSettings } from '@atomicjolt/lti-client/src/types';
+import type { LaunchSettings } from '@atomicjolt/lti-client/types';
 import type { IdTokenResult, LTIRequestBody } from '@atomicjolt/lti-server/src/types';
 import { getLtiStorageParams } from '@atomicjolt/lti-server/src/libs/platforms';
 import { OPEN_ID_COOKIE_PREFIX } from '@atomicjolt/lti-server/src/libs/constants';
 import { validateIdTokenContents } from '@atomicjolt/lti-server/src/libs/lti_validation';
 import { validateRequest } from '../libs/validate';
 
-import type { EnvBindings } from '../types';
+import type { EnvBindings } from '../../types';
 import launchHtml from '../html/launch_html';
 
 import { getPlatformOIDCUrl } from '../libs/platforms';
@@ -25,7 +26,7 @@ launch.post('/', async (c: Context) => {
       throw new Error('Missing LTI token.');
     }
   } catch (e) {
-    const res = new Response(e.message, {
+    const res = new Response((e as Error).message, {
       status: 401,
     });
     throw new HTTPException(401, { res });
@@ -36,7 +37,10 @@ launch.post('/', async (c: Context) => {
 
   // Check to see if a cookie exists for the state
   let stateVerified = false;
-  const validCookie = c.req.cookie(`${OPEN_ID_COOKIE_PREFIX}${body.state}`);
+  console.log('all cookie', getCookie(c))
+  const validCookie = getCookie(c, `${OPEN_ID_COOKIE_PREFIX}${body.state}`);
+  console.log('cookie:', `${OPEN_ID_COOKIE_PREFIX}${body.state}`)
+  console.log('validCookie', validCookie)
   if (validCookie) {
     stateVerified = true;
   }

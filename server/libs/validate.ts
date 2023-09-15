@@ -35,8 +35,6 @@ export async function validateRequest(
   if (state !== oidcState.state) {
     throw new Error('Incorrect LTI state. Please launch the application again.');
   }
-  console.log('idTokenResult is valid')
   validateNonce(oidcState, idTokenResult);
-  console.log('nonce is valid')
   return idTokenResult;
 }

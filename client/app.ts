@@ -1,6 +1,8 @@
-import { ltiLaunch } from '@atomicjolt/lti-client/src/client/launch';
+import { ltiLaunch } from '@atomicjolt/lti-client';
+import type { LaunchSettings } from '@atomicjolt/lti-client/types';
 
-ltiLaunch(window.LAUNCH_SETTINGS).then((valid) => {
+const launchSettings: LaunchSettings = window.LAUNCH_SETTINGS;
+ltiLaunch(launchSettings).then((valid) => {
   if (valid) {
     document.body.innerHTML = 'hello world';
   } else {
