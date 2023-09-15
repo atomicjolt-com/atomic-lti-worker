@@ -3,7 +3,7 @@ import {
   CANVAS_PUBLIC_JWKS_URL,
   IdToken,
 } from '@atomicjolt/lti-types';
-import type { OIDCState } from '@atomicjolt/lti-server/src/types';
+import type { OIDCState } from '@atomicjolt/lti-server/types';
 
 import { signJwtPrivate, alg } from '../libs/jwt';
 import {

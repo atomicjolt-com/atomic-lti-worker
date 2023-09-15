@@ -1,7 +1,18 @@
 import { importPKCS8 } from 'jose';
 import { expect, it, describe, afterEach } from 'vitest';
-import { IdToken } from '@atomicjolt/lti-types';
-import type { KeySet } from '@atomicjolt/lti-server/src/types';
+import {
+  IdToken,
+  MESSAGE_TYPE,
+  MessageTypes,
+  LTI_VERSION,
+  RESOURCE_LINK_CLAIM,
+  LtiVersions,
+  DocumentTargets,
+  Roles,
+  AGS_CLAIM,
+  AGSScopes,
+} from '@atomicjolt/lti-types';
+import type { KeySet } from '@atomicjolt/lti-server/types';
 
 import {
   getJwks,
@@ -19,9 +30,9 @@ const env = getMiniflareBindings();
 const clientId = '43460000000000572';
 
 export const test_id_token: IdToken = {
-  'https://purl.imsglobal.org/spec/lti/claim/message_type': 'LtiResourceLinkRequest',
-  'https://purl.imsglobal.org/spec/lti/claim/version': '1.3.0',
-  'https://purl.imsglobal.org/spec/lti/claim/resource_link': {
+  [MESSAGE_TYPE]: MessageTypes.LtiDeepLinkingRequest,
+  [LTI_VERSION]: LtiVersions.v1_3_0,
+  [RESOURCE_LINK_CLAIM]: {
     'id': 'a8a76fb8fbcc2d09787dafd28564e2ecdab51f11',
     'description': null,
     'title': '8th Grade Math',
@@ -74,7 +85,7 @@ export const test_id_token: IdToken = {
     }
   },
   'https://purl.imsglobal.org/spec/lti/claim/launch_presentation': {
-    'document_target': 'iframe',
+    'document_target': DocumentTargets.iframe,
     'return_url': 'https://atomicjolt.instructure.com/courses/253/external_content/success/external_tool_redirect',
     'locale': 'en',
     'height': 400,
@@ -86,12 +97,12 @@ export const test_id_token: IdToken = {
   },
   'locale': 'en',
   'https://purl.imsglobal.org/spec/lti/claim/roles': [
-    'http://purl.imsglobal.org/vocab/lis/v2/institution/person#Administrator',
-    'http://purl.imsglobal.org/vocab/lis/v2/institution/person#Instructor',
-    'http://purl.imsglobal.org/vocab/lis/v2/institution/person#Student',
-    'http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor',
-    'http://purl.imsglobal.org/vocab/lis/v2/membership#Learner',
-    'http://purl.imsglobal.org/vocab/lis/v2/system/person#User'
+    Roles.AdministratorInstitutionRole,
+    Roles.InstructorInstitutionRole,
+    Roles.StudentInstitutionRole,
+    Roles.InstructorContextRole,
+    Roles.LearnerContextRole,
+    Roles.UserSystemRole,
   ],
   'https://purl.imsglobal.org/spec/lti/claim/custom': {
     'canvas_sis_id': '$Canvas.user.sisid',
@@ -118,12 +129,12 @@ export const test_id_token: IdToken = {
   'errors': {
     'errors': {}
   },
-  'https://purl.imsglobal.org/spec/lti-ags/claim/endpoint': {
+  [AGS_CLAIM]: {
     'scope': [
-      'https://purl.imsglobal.org/spec/lti-ags/scope/lineitem',
-      'https://purl.imsglobal.org/spec/lti-ags/scope/result.readonly',
-      'https://purl.imsglobal.org/spec/lti-ags/scope/score',
-      'https://purl.imsglobal.org/spec/lti-ags/scope/lineitem.readonly'
+      AGSScopes.lineItem,
+      AGSScopes.resultReadOnly,
+      AGSScopes.score,
+      AGSScopes.lineItemReadOnly,
     ],
     'lineitems': 'https://atomicjolt.instructure.com/api/lti/courses/253/line_items',
     'validation_context': null,

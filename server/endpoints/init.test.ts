@@ -2,7 +2,7 @@ import { expect, it, describe } from 'vitest';
 
 const env = getMiniflareBindings();
 import { app } from '../../functions/lti/[[route]]';
-import { OPEN_ID_COOKIE_PREFIX, OPEN_ID_STORAGE_COOKIE } from '@atomicjolt/lti-server/src/libs/constants';
+import { OPEN_ID_COOKIE_PREFIX, OPEN_ID_STORAGE_COOKIE } from '@atomicjolt/lti-server';
 
 describe('init OIDC request', () => {
 	it('returns 302 for a POST to /init', async () => {

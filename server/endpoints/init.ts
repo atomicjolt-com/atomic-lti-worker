@@ -1,8 +1,8 @@
 import { Hono } from 'hono';
 import type { Context } from 'hono';
 import { getCookie, setCookie } from 'hono/cookie';
-import { buildInit } from '@atomicjolt/lti-server/src/libs/oidc';
-import { OPEN_ID_COOKIE_PREFIX, OPEN_ID_STORAGE_COOKIE } from '@atomicjolt/lti-server/src/libs/constants';
+import { buildInit } from '@atomicjolt/lti-server';
+import { OPEN_ID_COOKIE_PREFIX, OPEN_ID_STORAGE_COOKIE } from '@atomicjolt/lti-server';
 
 import type { EnvBindings } from '../../types';
 import { getPlatformOIDCUrl } from '../libs/platforms';
@@ -22,6 +22,7 @@ function writeCookie(c: Context, name: string, value: string, maxAge: number) {
 	});
 }
 
+
 init.post('/', async (c: Context) => {
 	const requestUrl = c.req.url;
 	const formData = await c.req.formData();
@@ -34,10 +35,17 @@ init.post('/', async (c: Context) => {
 		return new Response('Request is missing required field iss', {
 			status: 401,
 		});
-	};
+	}
 
 	const platformOIDCUrl = getPlatformOIDCUrl(iss);
-	const { oidcState, url, settings } = buildInit(requestUrl, clientId, loginHint, ltiMessageHint, target, platformOIDCUrl);
+	const { oidcState, url, settings } = buildInit(
+		requestUrl,
+		clientId,
+		loginHint,
+		ltiMessageHint,
+		target,
+		platformOIDCUrl
+	);
 
 	await setOIDC(c, oidcState);
 

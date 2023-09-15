@@ -1,5 +1,5 @@
 import * as jose from 'jose';
-import type { Platform } from '@atomicjolt/lti-server/src/types';
+import type { Platform } from '@atomicjolt/lti-server/types';
 
 import { PLATFORMS } from '../../definitions';
 

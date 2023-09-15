@@ -6,7 +6,7 @@ import {
   CANVAS_BETA_AUTH_TOKEN_URL,
   CANVAS_BETA_OIDC_URL,
 } from '@atomicjolt/lti-types';
-import type { Platforms } from '@atomicjolt/lti-server/src/types';
+import type { Platforms } from '@atomicjolt/lti-server/types';
 
 export const APP_NAME = 'Atomic LTI';
 export const ALLOWED_LAUNCH_TIME = 600000; // 10 minutes

@@ -1,11 +1,12 @@
 import { expect, it, describe } from 'vitest';
-import { OPEN_ID_STORAGE_COOKIE } from '@atomicjolt/lti-server/src/libs/constants';
+import { OPEN_ID_STORAGE_COOKIE } from '@atomicjolt/lti-server';
 
+import type { EnvBindings } from '../../types';
 import { app } from '../../functions/lti/[[route]]';
 import { setupValidState } from '../test/state_helper';
 import { test_id_token } from '../libs/jwt.test';
 
-const env = getMiniflareBindings();
+const env: EnvBindings = getMiniflareBindings();
 
 describe('redirect request', () => {
   it('returns 200 for a POST to /redirect', async () => {

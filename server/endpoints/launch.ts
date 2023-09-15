@@ -3,15 +3,14 @@ import type { Context } from 'hono';
 import { getCookie } from 'hono/cookie';
 import { HTTPException } from 'hono/http-exception';
 import type { LaunchSettings } from '@atomicjolt/lti-client/types';
-import type { IdTokenResult, LTIRequestBody } from '@atomicjolt/lti-server/src/types';
-import { getLtiStorageParams } from '@atomicjolt/lti-server/src/libs/platforms';
-import { OPEN_ID_COOKIE_PREFIX } from '@atomicjolt/lti-server/src/libs/constants';
-import { validateIdTokenContents } from '@atomicjolt/lti-server/src/libs/lti_validation';
-import { validateRequest } from '../libs/validate';
+import type { IdTokenResult, LTIRequestBody } from '@atomicjolt/lti-server/types';
+import { getLtiStorageParams } from '@atomicjolt/lti-server';
+import { OPEN_ID_COOKIE_PREFIX } from '@atomicjolt/lti-server';
+import { validateIdTokenContents } from '@atomicjolt/lti-server';
 
 import type { EnvBindings } from '../../types';
+import { validateRequest } from '../libs/validate';
 import launchHtml from '../html/launch_html';
-
 import { getPlatformOIDCUrl } from '../libs/platforms';
 
 const launch = new Hono<{ Bindings: EnvBindings }>();

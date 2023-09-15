@@ -3,7 +3,7 @@ import {
   LTI_VERSION,
   MESSAGE_TYPE,
 } from '@atomicjolt/lti-types';
-import { OPEN_ID_COOKIE_PREFIX } from '@atomicjolt/lti-server/src/libs/constants';
+import { OPEN_ID_COOKIE_PREFIX } from '@atomicjolt/lti-server';
 
 import type { EnvBindings } from '../../types';
 import { app } from '../../functions/lti/[[route]]';

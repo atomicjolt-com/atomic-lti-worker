@@ -18,7 +18,7 @@ import { IdToken } from '@atomicjolt/lti-types';
 
 import { getJwkServer } from './platforms';
 import { APP_NAME } from '../../definitions';
-import type { IdTokenResult, KeySet, JWKS_RESULT } from '@atomicjolt/lti-server/src/types';
+import type { IdTokenResult, KeySet, JWKS_RESULT } from '@atomicjolt/lti-server/types';
 export const JWKS_KV_KEY = 'current_jwks';
 
 export const alg = 'RS256';

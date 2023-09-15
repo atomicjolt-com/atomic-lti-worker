@@ -1,5 +1,5 @@
 import type { Context } from 'hono';
-import type { OIDCState } from '@atomicjolt/lti-server/src/types';
+import type { OIDCState } from '@atomicjolt/lti-server/types';
 import { ALLOWED_LAUNCH_TIME } from '../../definitions';
 
 export async function setOIDC(c: Context, oidcState: OIDCState) {

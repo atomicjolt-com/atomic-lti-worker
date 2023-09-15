@@ -2,7 +2,7 @@ import { Hono } from 'hono';
 import type { Context } from 'hono';
 import { HTTPException } from 'hono/http-exception';
 import { TARGET_LINK_URI_CLAIM } from '@atomicjolt/lti-types';
-import type { RedirectParams, LTIRequestBody, IdTokenResult } from '@atomicjolt/lti-server/src/types';
+import type { RedirectParams, LTIRequestBody, IdTokenResult } from '@atomicjolt/lti-server/types';
 
 import { validateRequest } from '../libs/validate';
 import redirectHtml from '../html/redirect_html';
@@ -22,7 +22,7 @@ redirect.post('/', async (c: Context) => {
       throw new Error('Missing LTI token.');
     }
   } catch (e) {
-    const res = new Response(e.message, {
+    const res = new Response((e as Error).message, {
       status: 401,
     });
     throw new HTTPException(401, { res });
