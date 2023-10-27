@@ -1,36 +1,36 @@
 {
-	"private": true,
-	"version": "1.1.0",
-	"scripts": {
-		"worker": "wrangler pages dev --compatibility-date=2023-06-28 ./public",
-		"worker:remote": "wrangler pages dev --remote --compatibility-date=2023-06-28 ./public",
-		"build": "npm run clean && node esbuild.mjs prod",
-		"clean": "rm -rf public/dist",
-		"dev:build": "npm run clean && node esbuild.mjs dev",
-		"deploy": "npm run build && wrangler pages deploy ./public",
-		"test": "vitest",
-		"tail": "wrangler tail --format pretty"
-	},
-	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20230904.0",
-		"@typescript-eslint/eslint-plugin": "^6.4.0",
-		"@typescript-eslint/parser": "^6.4.0",
-		"esbuild": "^0.19.2",
-		"eslint": "^8.49.0",
-		"eslint-config-typescript": "^3.0.0",
-		"prettier": "^3.0.3",
-		"typescript": "^5.2.2",
-		"vitest": "^0.33.0",
-		"vitest-environment-miniflare": "^2.14.0",
-		"wrangler": "^3.7.0"
-	},
-	"dependencies": {
-		"@atomicjolt/lti-server": "^1.5.0",
-		"@atomicjolt/lti-client": "^2.4.1",
-		"@atomicjolt/lti-types": "^1.1.0",
-		"hono": "^3.6.0",
-		"i18next": "^23.4.4",
-		"i18next-browser-languagedetector": "^7.1.0",
-		"jose": "^4.14.4"
-	}
+  "private": true,
+  "version": "1.1.0",
+  "scripts": {
+    "worker": "wrangler pages dev --compatibility-date=2023-06-28 ./public",
+    "worker:remote": "wrangler pages dev --remote --compatibility-date=2023-06-28 ./public",
+    "build": "npm run clean && node esbuild.mjs prod",
+    "clean": "rm -rf public/dist",
+    "dev:build": "npm run clean && node esbuild.mjs dev",
+    "deploy": "npm run build && wrangler pages deploy ./public",
+    "test": "vitest",
+    "tail": "wrangler tail --format pretty"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20230904.0",
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
+    "@typescript-eslint/parser": "^6.4.0",
+    "esbuild": "^0.19.2",
+    "eslint": "^8.49.0",
+    "eslint-config-typescript": "^3.0.0",
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2",
+    "vitest": "^0.33.0",
+    "vitest-environment-miniflare": "^2.14.0",
+    "wrangler": "^3.7.0"
+  },
+  "dependencies": {
+    "@atomicjolt/lti-server": "^1.5.0",
+    "@atomicjolt/lti-client": "^2.4.5",
+    "@atomicjolt/lti-types": "^1.1.0",
+    "hono": "^3.6.0",
+    "i18next": "^23.4.4",
+    "i18next-browser-languagedetector": "^7.1.0",
+    "jose": "^4.14.4"
+  }
 }
