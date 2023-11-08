@@ -9,7 +9,6 @@ import {
 import type { Platforms } from '@atomicjolt/lti-server/types';
 
 export const APP_NAME = 'Atomic LTI';
-export const ALLOWED_LAUNCH_TIME = 600000; // 10 minutes
 
 //////////////////////////////////////////////////////
 // TODO these should be dynamic values stored in a database

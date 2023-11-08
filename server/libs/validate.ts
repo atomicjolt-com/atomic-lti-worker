@@ -1,24 +1,8 @@
 import type { Context } from 'hono';
-import type { OIDCState, IdTokenResult } from '@atomicjolt/lti-server/types';
-
+import type { IdTokenResult } from '@atomicjolt/lti-server/types';
+import { validateNonce } from '@atomicjolt/lti-server';
 import { validateIdToken } from './jwt';
-import { ALLOWED_LAUNCH_TIME } from '../../definitions';
 import { getOIDC } from '../models/oidc';
-
-export async function validateNonce(oidcState: OIDCState, idTokenResult: IdTokenResult) {
-  // Check the nonce and make sure the state is not older than 10 minutes
-  const datetime = new Date(oidcState.datetime);
-  const tenMinutesAgo = new Date().getTime() - ALLOWED_LAUNCH_TIME;
-  const expired = datetime.getTime() < tenMinutesAgo;
-  if (expired) {
-    throw new Error('Allowed time has expired. Please launch the application again.');
-  }
-
-  const nonce = idTokenResult.token?.nonce;
-  if (nonce && nonce !== oidcState.nonce) {
-    throw new Error('Duplicate LTI launch. Please launch the application again.');
-  }
-}
 
 export async function validateRequest(
   c: Context,
