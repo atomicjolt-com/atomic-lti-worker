@@ -1,39 +1,38 @@
 {
-	"compilerOptions": {
-		"noEmit": true,
-		"module": "es2022",
-		"target": "es2021",
-		"lib": [
-			"es2021",
-			"DOM"
-		],
-		"esModuleInterop": true,
-		"strict": true,
-		"alwaysStrict": true,
-		"preserveConstEnums": true,
-		"moduleResolution": "node",
-		"sourceMap": true,
-		"types": [
-			"@cloudflare/workers-types",
-			"vitest-environment-miniflare/globals"
-		],
-		"resolveJsonModule": true,
-		"allowJs": true,
-		"checkJs": false,
-		"skipLibCheck": true
-	},
-	"types": [
-		"@cloudflare/workers-types",
-		"node"
-	],
-	"include": [
-		"client",
-		"server",
-		"types.d.ts"
-	],
-	"exclude": [
-		"node_modules",
-		"dist",
-		"test"
-	]
+  "compilerOptions": {
+    "noEmit": true,
+    "module": "es2022",
+    "target": "es2021",
+    "lib": [
+      "es2021",
+      "DOM"
+    ],
+    "esModuleInterop": true,
+    "strict": true,
+    "alwaysStrict": true,
+    "preserveConstEnums": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "types": [
+      "@cloudflare/workers-types",
+      "vitest-environment-miniflare/globals"
+    ],
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "checkJs": false,
+    "skipLibCheck": true
+  },
+  "types": [
+    "@cloudflare/workers-types",
+    "node"
+  ],
+  "include": [
+    "client",
+    "types.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "test"
+  ]
 }
