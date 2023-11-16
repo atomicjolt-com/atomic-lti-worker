@@ -1,11 +1,25 @@
-import { Hono } from 'hono';
 import type { Context } from 'hono';
+import type { ToolConfiguration } from '@atomicjolt/lti-types';
+
+import { Hono } from 'hono';
 import { HTTPException } from 'hono/http-exception';
 import { handle } from 'hono/cloudflare-pages'
 import { etag } from 'hono/etag';
 import { EnvBindings } from '@atomicjolt/lti-endpoints/types';
-import { handleInit, handleJwks, handleRedirect, handleLaunch } from '@atomicjolt/lti-endpoints';
+import {
+  handleInit, handleJwks, handleRedirect, handleLaunch,
+  handleDynamicRegistrationInit,
+  handleDynamicRegistrationFinish,
+} from '@atomicjolt/lti-endpoints';
 import metafile from '../../public/dist/metafile.json';
+import { dynamicRegistrationHtml } from '../../server/html/dynamic_registration_html';
+import {
+  initPath,
+  redirectPath,
+  launchPath, jwksPath, registrationPath,
+  registrationFinishPath,
+  getToolConfiguration
+} from '../../server/tool_configuration';
 
 // Export app for testing
 export const app = new Hono<{ Bindings: EnvBindings }>();
@@ -19,11 +33,15 @@ const initHashedScriptName = metafile["client/app-init.ts"];
 const launchhashedScriptName = metafile["client/app.ts"];
 
 // LTI routes
-app.get('/lti/jwks', (c) => handleJwks(c));
-app.post('/lti/init', (c) => handleInit(c, initHashedScriptName));
-app.post('/lti/redirect', (c) => handleRedirect(c));
-app.post('/lti/launch', (c) => handleLaunch(c, launchhashedScriptName));
+app.get(jwksPath, (c) => handleJwks(c));
+app.post(initPath, (c) => handleInit(c, initHashedScriptName));
+app.post(redirectPath, (c) => handleRedirect(c));
+app.post(launchPath, (c) => handleLaunch(c, launchhashedScriptName));
 
+// LTI Dyanmic Registration routes
+const handlePlatformResponse = (config: ToolConfiguration) => { };
+app.get(registrationPath, (c) => handleDynamicRegistrationInit(c, dynamicRegistrationHtml));
+app.post(registrationFinishPath, (c) => handleDynamicRegistrationFinish(c, getToolConfiguration, handlePlatformResponse));
 
 // app.onError((err, c) => {
 //   console.error(`${err}`);
