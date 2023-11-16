@@ -1,5 +1,4 @@
 import type { Context } from 'hono';
-import type { ToolConfiguration } from '@atomicjolt/lti-types';
 
 import { Hono } from 'hono';
 import { HTTPException } from 'hono/http-exception';
@@ -20,6 +19,7 @@ import {
   registrationFinishPath,
   getToolConfiguration
 } from '../../server/tool_configuration';
+import { handlePlatformResponse } from '../../server/platforms';
 
 // Export app for testing
 export const app = new Hono<{ Bindings: EnvBindings }>();
@@ -39,7 +39,6 @@ app.post(redirectPath, (c) => handleRedirect(c));
 app.post(launchPath, (c) => handleLaunch(c, launchhashedScriptName));
 
 // LTI Dyanmic Registration routes
-const handlePlatformResponse = (config: ToolConfiguration) => { };
 app.get(registrationPath, (c) => handleDynamicRegistrationInit(c, dynamicRegistrationHtml));
 app.post(registrationFinishPath, (c) => handleDynamicRegistrationFinish(c, getToolConfiguration, handlePlatformResponse));
 

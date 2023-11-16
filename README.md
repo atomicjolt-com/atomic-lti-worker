@@ -7,13 +7,13 @@ This project uses Cloudflare workers to handle a Tool side LTI 1.3 launch.
   `npx wrangler kv:namespace create OAUTH_STATE`
   `npx wrangler kv:namespace create OAUTH_STATE --preview`
 
-2. Edit definitions.ts
-  Update PLATFORMS to point to your platforms:
-  `export const PLATFORMS: Platforms = {}`
+2. Platform setup
+  If you are using dynamic registration
+    Change server/tool_configuration.ts to match the tool's config
 
-  Change APP_NAME to be your app name.
-
-3. Update install.json with your tool's URLs
+  If your platform doesn't support dynamic registration:
+    Update install.json with your tool's URLs
+    
 
 ## Deploy
 To deploy the worker, run the following command:
