@@ -13,20 +13,24 @@ import {
 import metafile from '../../public/dist/metafile.json';
 import { dynamicRegistrationHtml } from '../../server/html/dynamic_registration_html';
 import {
+  getToolConfiguration
+} from '../../server/config';
+import {
+  clientName,
   initPath,
   redirectPath,
-  launchPath, jwksPath, registrationPath,
+  launchPath,
+  jwksPath,
+  registrationPath,
   registrationFinishPath,
-  getToolConfiguration
-} from '../../server/tool_configuration';
-import { handlePlatformResponse } from '../../server/platforms';
+} from '../../definitions';
 
 // Export app for testing
 export const app = new Hono<{ Bindings: EnvBindings }>();
 
 app.use('/*', etag());
 
-app.get('/', (c) => c.text('Atomic LTI'));
+app.get('/', (c) => c.text(clientName));
 app.get('/up', (c) => c.json({ up: true }));
 
 const initHashedScriptName = metafile["client/app-init.ts"];
@@ -38,9 +42,9 @@ app.post(initPath, (c) => handleInit(c, initHashedScriptName));
 app.post(redirectPath, (c) => handleRedirect(c));
 app.post(launchPath, (c) => handleLaunch(c, launchhashedScriptName));
 
-// LTI Dyanmic Registration routes
+// LTI Dynamic Registration routes
 app.get(registrationPath, (c) => handleDynamicRegistrationInit(c, dynamicRegistrationHtml));
-app.post(registrationFinishPath, (c) => handleDynamicRegistrationFinish(c, getToolConfiguration, handlePlatformResponse));
+app.post(registrationFinishPath, (c) => handleDynamicRegistrationFinish(c, getToolConfiguration));
 
 // app.onError((err, c) => {
 //   console.error(`${err}`);

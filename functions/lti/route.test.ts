@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-
 import { app } from './[[route]]';
+import { clientName } from '../../definitions';
 
 describe('index requests', () => {
   it('should return 200 response for GET to /', async () => {
@@ -11,7 +11,7 @@ describe('index requests', () => {
     expect(resp.status).toBe(200);
 
     const text = await resp.text();
-    expect(text).toBe('Atomic LTI');
+    expect(text).toBe(clientName);
   });
 
   it('should return 200 response for GET to /up', async () => {

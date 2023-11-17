@@ -1,6 +1,6 @@
 import type { PlatformConfiguration } from '@atomicjolt/lti-types';
 import { html } from '@atomicjolt/lti-endpoints';
-import { registrationFinishPath } from '../tool_configuration';
+import { registrationFinishPath } from '../../definitions';
 
 export function dynamicRegistrationHtml(
   platformConfiguration: PlatformConfiguration,
