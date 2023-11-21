@@ -6,9 +6,13 @@ import { handle } from 'hono/cloudflare-pages'
 import { etag } from 'hono/etag';
 import { EnvBindings } from '@atomicjolt/lti-endpoints/types';
 import {
-  handleInit, handleJwks, handleRedirect, handleLaunch,
+  handleInit,
+  handleJwks,
+  handleRedirect,
+  handleLaunch,
   handleDynamicRegistrationInit,
   handleDynamicRegistrationFinish,
+  handleNamesAndRoles,
 } from '@atomicjolt/lti-endpoints';
 import metafile from '../../public/dist/metafile.json';
 import { dynamicRegistrationHtml } from '../../server/html/dynamic_registration_html';
@@ -23,7 +27,9 @@ import {
   jwksPath,
   registrationPath,
   registrationFinishPath,
+  namesAndRolesPath,
 } from '../../definitions';
+import { getToolJwt } from '../../server/tool_jwt';
 
 // Export app for testing
 export const app = new Hono<{ Bindings: EnvBindings }>();
@@ -36,15 +42,20 @@ app.get('/up', (c) => c.json({ up: true }));
 const initHashedScriptName = metafile["client/app-init.ts"];
 const launchhashedScriptName = metafile["client/app.ts"];
 
+// All routes must be nested below '/lti
+
 // LTI routes
 app.get(jwksPath, (c) => handleJwks(c));
 app.post(initPath, (c) => handleInit(c, initHashedScriptName));
 app.post(redirectPath, (c) => handleRedirect(c));
-app.post(launchPath, (c) => handleLaunch(c, launchhashedScriptName));
+app.post(launchPath, (c) => handleLaunch(c, launchhashedScriptName, getToolJwt));
 
 // LTI Dynamic Registration routes
 app.get(registrationPath, (c) => handleDynamicRegistrationInit(c, dynamicRegistrationHtml));
 app.post(registrationFinishPath, (c) => handleDynamicRegistrationFinish(c, getToolConfiguration));
+
+// LTI services
+app.get(namesAndRolesPath, (c) => handleNamesAndRoles(c));
 
 // app.onError((err, c) => {
 //   console.error(`${err}`);

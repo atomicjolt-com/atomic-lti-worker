@@ -1,5 +1,11 @@
-import type { PlatformConfiguration, ToolConfiguration } from '@atomicjolt/lti-types';
-import { EnvBindings, Platform } from '@atomicjolt/lti-endpoints/types';
+import {
+  AGS_SCOPE_LINE_ITEM,
+  AGS_SCOPE_LINE_ITEM_READONLY,
+  AGS_SCOPE_RESULT,
+  AGS_SCOPE_SCORE,
+  NAMES_AND_ROLES_SCOPE,
+  type ToolConfiguration
+} from '@atomicjolt/lti-types';
 import { getDefaultToolConfiguration } from '@atomicjolt/lti-server';
 import {
   clientName,
@@ -26,6 +32,14 @@ export function getToolConfiguration(baseUrl: string): ToolConfiguration {
     tosUri,
     email,
   );
+
+  toolConfiguration.scope = [
+    AGS_SCOPE_LINE_ITEM,
+    AGS_SCOPE_LINE_ITEM_READONLY,
+    AGS_SCOPE_RESULT,
+    AGS_SCOPE_SCORE,
+    NAMES_AND_ROLES_SCOPE,
+  ].join(' ');
 
   // Modify toolConfiguration as needed for this tool
   return toolConfiguration;

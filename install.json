@@ -118,7 +118,7 @@
     "canvas_user_timezone": "$Person.address.timezone",
     "canvas_root_account_id": "$Canvas.rootAccount.id"
   },
-  "public_jwk_url": "https://atomic-lti-worker.atomicjolt.win/lti/jwks.json",
+  "public_jwk_url": "https://atomic-lti-worker.atomicjolt.win/lti/jwks",
   "target_link_uri": "https://atomic-lti-worker.atomicjolt.win/lti/launch",
   "oidc_initiation_url": "https://atomic-lti-worker.atomicjolt.win/lti/init"
 }
