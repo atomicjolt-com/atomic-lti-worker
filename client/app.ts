@@ -1,6 +1,6 @@
 import { ltiLaunch } from '@atomicjolt/lti-client';
 import type { LaunchSettings } from '@atomicjolt/lti-client/types';
-import { namesAndRolesPath } from '../definitions';
+import { namesAndRolesPath, signDeepLinkPath } from '../definitions';
 
 const launchSettings: LaunchSettings = window.LAUNCH_SETTINGS;
 ltiLaunch(launchSettings).then((valid) => {
@@ -31,7 +31,7 @@ ltiLaunch(launchSettings).then((valid) => {
             text: 'A simple hello world example',
           };
 
-          fetch('/lti_services/sign_deep_link', {
+          fetch('/' + signDeepLinkPath, {
             method: 'POST',
             body: JSON.stringify([deepLink]),
             headers: {
@@ -40,12 +40,11 @@ ltiLaunch(launchSettings).then((valid) => {
             }
           })
             .then(response => {
-              console.log(response);
               return response.json();
             })
-            .then(data => {
-              console.log(data);
-              const form = document.getElementById('deep-linking-form');
+            .then((d: any) => {
+              const data = JSON.parse(d);
+              const form = document.getElementById('deep-linking-form') as HTMLFormElement;
               form?.setAttribute('action', launchSettings.deepLinking?.deep_link_return_url || '');
               const field = document.getElementById('deep-link-jwt');
               field?.setAttribute('value', data.jwt);

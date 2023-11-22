@@ -17,5 +17,4 @@ export const registrationFinishPath: string = '/lti/register_finish';
 
 // LTI Services
 export const namesAndRolesPath: string = 'lti/names_and_roles';
-
 export const signDeepLinkPath: string = 'lti/sign_deep_link';

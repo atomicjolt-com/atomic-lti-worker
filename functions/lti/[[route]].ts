@@ -13,6 +13,7 @@ import {
   handleDynamicRegistrationInit,
   handleDynamicRegistrationFinish,
   handleNamesAndRoles,
+  handleSignDeepLink,
 } from '@atomicjolt/lti-endpoints';
 import metafile from '../../public/dist/metafile.json';
 import { dynamicRegistrationHtml } from '../../server/html/dynamic_registration_html';
@@ -28,6 +29,7 @@ import {
   registrationPath,
   registrationFinishPath,
   namesAndRolesPath,
+  signDeepLinkPath,
 } from '../../definitions';
 import { getToolJwt } from '../../server/tool_jwt';
 
@@ -42,7 +44,7 @@ app.get('/up', (c) => c.json({ up: true }));
 const initHashedScriptName = metafile["client/app-init.ts"];
 const launchhashedScriptName = metafile["client/app.ts"];
 
-// All routes must be nested below '/lti
+// All routes must be nested below /lti
 
 // LTI routes
 app.get(jwksPath, (c) => handleJwks(c));
@@ -56,6 +58,7 @@ app.post(registrationFinishPath, (c) => handleDynamicRegistrationFinish(c, getTo
 
 // LTI services
 app.get(namesAndRolesPath, (c) => handleNamesAndRoles(c));
+app.post(signDeepLinkPath, (c) => handleSignDeepLink(c));
 
 // app.onError((err, c) => {
 //   console.error(`${err}`);
