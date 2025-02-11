@@ -1,6 +1,6 @@
 import { ltiLaunch } from '@atomicjolt/lti-client';
 import type { LaunchSettings } from '@atomicjolt/lti-client/types';
-import { namesAndRolesPath, signDeepLinkPath } from '../definitions';
+import { LTI_NAMES_AND_ROLES_PATH, LTI_SIGN_DEEP_LINK_PATH } from '../definitions';
 
 const launchSettings: LaunchSettings = window.LAUNCH_SETTINGS;
 ltiLaunch(launchSettings).then((valid) => {
@@ -31,7 +31,7 @@ ltiLaunch(launchSettings).then((valid) => {
             text: 'A simple hello world example',
           };
 
-          fetch('/' + signDeepLinkPath, {
+          fetch('/' + LTI_SIGN_DEEP_LINK_PATH, {
             method: 'POST',
             body: JSON.stringify([deepLink]),
             headers: {
@@ -59,7 +59,7 @@ ltiLaunch(launchSettings).then((valid) => {
     }
 
     // Example of calling the names and roles service
-    fetch(`/${namesAndRolesPath}`, {
+    fetch(`/${LTI_NAMES_AND_ROLES_PATH}`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${jwt}`,

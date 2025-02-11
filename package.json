@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "1.1.0",
+  "version": "1.2.0",
   "scripts": {
     "worker": "wrangler pages dev --compatibility-date=2023-06-28 ./public",
     "worker:remote": "wrangler pages dev --remote --compatibility-date=2023-06-28 ./public",
@@ -12,24 +12,24 @@
     "tail": "wrangler tail --format pretty"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20250129.0",
-    "@typescript-eslint/eslint-plugin": "^8.23",
-    "@typescript-eslint/parser": "^8.23",
-    "esbuild": "^0.24",
-    "eslint": "^9.19",
+    "@cloudflare/workers-types": "^4.20250204.0",
+    "@typescript-eslint/eslint-plugin": "^8.24",
+    "@typescript-eslint/parser": "^8.24",
+    "esbuild": "^0.25",
+    "eslint": "^9.20",
     "eslint-config-typescript": "^3.0",
-    "prettier": "^3.4",
+    "prettier": "^3.5",
     "typescript": "^5.7",
     "vitest": "^3.0",
     "vitest-environment-miniflare": "^2.14",
     "wrangler": "^3.107"
   },
   "dependencies": {
-    "@atomicjolt/lti-server": "1.13",
+    "@atomicjolt/lti-server": "2.0",
     "@atomicjolt/lti-client": "^2.6",
     "@atomicjolt/lti-endpoints": "file:../atomicjolt-lti-endpoints",
-    "@atomicjolt/lti-types": "^1.1.6",
-    "hono": "^4.6",
+    "@atomicjolt/lti-types": "^1.2",
+    "hono": "^4.7",
     "i18next": "^24.2",
     "i18next-browser-languagedetector": "^8.0",
     "jose": "^5.9"
