@@ -15,7 +15,7 @@ import {
   handleSignDeepLink,
 } from '@atomicjolt/lti-endpoints';
 import metafile from '../../public/dist/metafile.json';
-import dynamicRegistrationFinishHtml, { dynamicRegistrationHtml } from '../../server/html/dynamic_registration_html';
+import { dynamicRegistrationHtml } from '../../server/html/dynamic_registration_html';
 import {
   getToolConfiguration
 } from '../../server/config';
