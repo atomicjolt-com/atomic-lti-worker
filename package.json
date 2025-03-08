@@ -13,6 +13,7 @@
     "types": "wrangler types --env-interface CloudflareBindings"
   },
   "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.7",
     "@cloudflare/workers-types": "^4.20250303.0",
     "@typescript-eslint/eslint-plugin": "^8.26",
     "@typescript-eslint/parser": "^8.26",
@@ -22,7 +23,6 @@
     "prettier": "^3.5",
     "typescript": "^5.8",
     "vitest": "^3.0",
-    "vitest-environment-miniflare": "^2.14",
     "wrangler": "^3.114"
   },
   "dependencies": {
