@@ -6,8 +6,6 @@ export interface ResponseError {
 }
 
 declare global {
-  function setupMiniflareIsolatedStorage(): Function;
-  function getMiniflareBindings(): EnvBindings;
   interface Window {
     INIT_SETTINGS: InitSettings;
     LAUNCH_SETTINGS: LaunchSettings;

@@ -26,33 +26,6 @@ const metafilePlugin = {
   },
 };
 
-const indexHtmlPath = 'public/index.html';
-const htmlFileWriter = {
-  name: 'htmlFileWriter',
-  setup(build) {
-    build.onEnd((result) => {
-      if (result.errors.length === 0) {
-        Object.keys(result.metafile.outputs).forEach((dest) => {
-          const data = result.metafile.outputs[dest];
-          if (data.entryPoint === 'client/home.ts') {
-            // Read the HTML file
-            const html = fs.readFileSync(indexHtmlPath, 'utf-8');
-
-            // Replace the script src with the new transpiled JavaScript file name
-            const newHtml = html.replace(
-              /<script id="main-script" src=".+.js"><\/script>/g, 
-              `<script id="main-script" src="${dest.replace('public/', '')}"></script>`
-            );
-
-            // Write the new HTML back to the file
-            fs.writeFileSync(indexHtmlPath, newHtml);            
-          }
-        });
-      }
-    });
-  }
-};
-
 const baseConfig = {
   entryPoints,
   bundle: true,
@@ -65,7 +38,7 @@ const baseConfig = {
   logLevel: 'info',
   //splitting: true,
   //format: 'esm',
-  plugins: [metafilePlugin, htmlFileWriter],
+  plugins: [metafilePlugin],
   loader: {
     '.js': 'jsx',
     '.json': 'json',

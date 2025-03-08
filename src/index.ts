@@ -1,9 +1,7 @@
 import type { Context } from 'hono';
 import { Hono } from 'hono';
 import { HTTPException } from 'hono/http-exception';
-import { handle } from 'hono/cloudflare-pages'
 import { etag } from 'hono/etag';
-import { EnvBindings } from '@atomicjolt/lti-endpoints';
 import {
   handleInit,
   handleJwks,
@@ -14,13 +12,12 @@ import {
   handleNamesAndRoles,
   handleSignDeepLink,
 } from '@atomicjolt/lti-endpoints';
-import metafile from '../../public/dist/metafile.json';
-import { dynamicRegistrationHtml } from '../../server/html/dynamic_registration_html';
+import metafile from '../public/dist/metafile.json';
+import { dynamicRegistrationHtml } from './html/dynamic_registration_html';
 import {
   getToolConfiguration
-} from '../../server/config';
+} from './config';
 import {
-  APPLICATION_NAME,
   LTI_INIT_PATH,
   LTI_REDIRECT_PATH,
   LTI_LAUNCH_PATH,
@@ -29,22 +26,29 @@ import {
   LTI_REGISTRATION_FINISH_PATH,
   LTI_NAMES_AND_ROLES_PATH,
   LTI_SIGN_DEEP_LINK_PATH,
-} from '../../definitions';
-import { getToolJwt } from '../../server/tool_jwt';
-import { handlePlatformResponse } from '../../server/register';
+} from '../definitions';
+import { getToolJwt } from './tool_jwt';
+import { handlePlatformResponse } from './register';
+import indexHtml from './html/index_html';
 
-// Export app for testing
-export const app = new Hono<{ Bindings: EnvBindings }>();
+// Export durable objects
+export { OIDCStateDurableObject } from '@atomicjolt/lti-endpoints';
+
+
+const app = new Hono<{ Bindings: CloudflareBindings }>()
 
 app.use('/*', etag());
 
-app.get('/', (c) => c.text(APPLICATION_NAME));
+app.use('/*', async (c: Context, next: Function) => {
+  await next()
+  c.header('x-frame-options', 'ALLOWALL');
+});
+
+app.get('/', (c) => c.html(indexHtml()));
 app.get('/up', (c) => c.json({ up: true }));
 
 const initHashedScriptName = metafile["client/app-init.ts"];
 const launchhashedScriptName = metafile["client/app.ts"];
-
-// All routes must be nested below /lti
 
 // LTI routes
 app.get(LTI_JWKS_PATH, (c) => handleJwks(c));
@@ -62,11 +66,6 @@ app.post(LTI_REGISTRATION_FINISH_PATH, (c) =>
 app.get(LTI_NAMES_AND_ROLES_PATH, (c) => handleNamesAndRoles(c));
 app.post(LTI_SIGN_DEEP_LINK_PATH, (c) => handleSignDeepLink(c));
 
-// app.onError((err, c) => {
-//   console.error(`${err}`);
-//   return c.text(err.toString());
-// });
-
 // Error handling
 app.onError((err, c) => {
   console.error('handling on error', err);
@@ -79,9 +78,4 @@ app.onError((err, c) => {
 
 app.notFound(c => c.text('Not found', 404));
 
-app.use('/*', async (c: Context, next: Function) => {
-  await next()
-  c.header('x-frame-options', 'ALLOWALL');
-});
-
-export const onRequest = handle(app);
+export default app;

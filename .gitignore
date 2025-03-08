@@ -32,3 +32,4 @@ dist-ssr
 
 public/dist
 wrangler.toml
+wrangler.jsonc
