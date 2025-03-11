@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.7",
-    "@cloudflare/workers-types": "^4.20250303.0",
+    "@cloudflare/workers-types": "^4.20250310.0",
     "@typescript-eslint/eslint-plugin": "^8.26",
     "@typescript-eslint/parser": "^8.26",
     "esbuild": "^0.25",
@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@atomicjolt/lti-client": "^2.6",
-    "@atomicjolt/lti-endpoints": "file:../atomicjolt-lti-endpoints",
+    "@atomicjolt/lti-endpoints": "2.0",
     "@atomicjolt/lti-server": "2.0",
     "@atomicjolt/lti-types": "^1.2",
     "hono": "^4.7",
