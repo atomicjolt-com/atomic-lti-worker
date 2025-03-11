@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.7",
-    "@cloudflare/workers-types": "^4.20250310.0",
+    "@cloudflare/workers-types": "^4.20250311.0",
     "@typescript-eslint/eslint-plugin": "^8.26",
     "@typescript-eslint/parser": "^8.26",
     "esbuild": "^0.25",
@@ -27,12 +27,12 @@
   },
   "dependencies": {
     "@atomicjolt/lti-client": "^2.6",
-    "@atomicjolt/lti-endpoints": "2.0",
-    "@atomicjolt/lti-server": "2.0",
+    "@atomicjolt/lti-endpoints": "3.0",
+    "@atomicjolt/lti-server": "3.0",
     "@atomicjolt/lti-types": "^1.2",
     "hono": "^4.7",
     "i18next": "^24.2",
     "i18next-browser-languagedetector": "^8.0",
-    "jose": "^5.9.6"
+    "jose": "^6.0"
   }
 }
