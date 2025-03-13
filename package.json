@@ -13,8 +13,8 @@
     "types": "wrangler types --env-interface CloudflareBindings"
   },
   "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "^0.7",
-    "@cloudflare/workers-types": "^4.20250311.0",
+    "@cloudflare/vitest-pool-workers": "^0.8",
+    "@cloudflare/workers-types": "^4.20250313.0",
     "@typescript-eslint/eslint-plugin": "^8.26",
     "@typescript-eslint/parser": "^8.26",
     "esbuild": "^0.25",
@@ -23,7 +23,7 @@
     "prettier": "^3.5",
     "typescript": "^5.8",
     "vitest": "^3.0",
-    "wrangler": "^3.114"
+    "wrangler": "^4.0.0"
   },
   "dependencies": {
     "@atomicjolt/lti-client": "^2.6",
