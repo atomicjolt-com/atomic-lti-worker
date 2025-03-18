@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.8",
-    "@cloudflare/workers-types": "^4.20250313.0",
+    "@cloudflare/workers-types": "^4.20250317.0",
     "@typescript-eslint/eslint-plugin": "^8.26",
     "@typescript-eslint/parser": "^8.26",
     "esbuild": "^0.25",
@@ -23,12 +23,12 @@
     "prettier": "^3.5",
     "typescript": "^5.8",
     "vitest": "^3.0",
-    "wrangler": "^4.0.0"
+    "wrangler": "^4.1.0"
   },
   "dependencies": {
     "@atomicjolt/lti-client": "^2.6",
     "@atomicjolt/lti-endpoints": "3.0",
-    "@atomicjolt/lti-server": "3.0",
+    "@atomicjolt/lti-server": "3.1",
     "@atomicjolt/lti-types": "^1.2",
     "hono": "^4.7",
     "i18next": "^24.2",
