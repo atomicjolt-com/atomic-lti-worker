@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@atomicjolt/lti-client": "^2.6.4",
-    "@atomicjolt/lti-endpoints": "^3.2.3",
+    "@atomicjolt/lti-endpoints": "^3.2.4",
     "@atomicjolt/lti-server": "^3.3",
     "@atomicjolt/lti-types": "^1.2.6",
     "hono": "^4.7.6",
