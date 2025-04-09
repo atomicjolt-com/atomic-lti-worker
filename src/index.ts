@@ -57,11 +57,10 @@ app.post(LTI_REDIRECT_PATH, (c) => handleRedirect(c));
 
 app.post(LTI_LAUNCH_PATH, async (c) => {
   // validateLaunchRequest will throw an exception if the request is invalid
-  // and will return the idToken wrapped by access methods as well as the launch settings
+  // and will return the idTokenWrapper and launchSettings
   // which allow the application to retrive values from the LTI launch
-  // const { launchSettings, idTokenWrapper } = await validateLaunchRequest(c, getToolJwt);
-  await validateLaunchRequest(c, getToolJwt);
-  return c.html(launchHtml(launchScriptName));
+  const { launchSettings } = await validateLaunchRequest(c, getToolJwt);
+  return c.html(launchHtml(launchSettings, launchScriptName));
 });
 
 

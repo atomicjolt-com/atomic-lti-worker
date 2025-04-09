@@ -1,9 +1,13 @@
 import { html } from '@atomicjolt/lti-endpoints';
 import viteHmrHtml from './vite_hmr_html';
+import { LaunchSettings } from '@atomicjolt/lti-client';
 
-export default function launchHtml(scriptName: string) {
+export default function launchHtml(launchSettings: LaunchSettings, scriptName: string) {
   const head = `
     ${viteHmrHtml()}
+    <script type="text/javascript">
+      window.LAUNCH_SETTINGS = ${JSON.stringify(launchSettings)};
+    </script>
   `;
   const body = `
     <div id="error" class="hidden u-flex aj-centered-message">

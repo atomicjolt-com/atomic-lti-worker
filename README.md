@@ -14,7 +14,9 @@ This project provides a serverless implementation of the LTI 1.3 protocol using 
 
 ## Deploy to Cloudflare
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=<your git repo URL>)
+Deploy a simple Hello World LTI tool to Cloudflare with one click:
+
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/atomicjolt-com/atomic-lti-worker)
 
 ## Setup
 
@@ -57,6 +59,9 @@ After creating the namespaces, copy the returned IDs into your `wrangler.toml` f
 If your LTI platform supports dynamic registration:
 
 - Modify `server/tool_configuration.ts` to match your tool's configuration requirements
+
+Dynamic Registration URL
+`https://yourdomain.com/lti/register`
 
 #### For Manual Registration
 
