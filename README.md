@@ -12,6 +12,10 @@ This project provides a serverless implementation of the LTI 1.3 protocol using 
 - [Wrangler CLI](https://developers.cloudflare.com/workers/cli-wrangler/install-update) for Cloudflare Workers
 - A Cloudflare account
 
+## Deploy to Cloudflare
+
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=<your git repo URL>)
+
 ## Setup
 
 ### 1. Configuration
@@ -19,7 +23,7 @@ This project provides a serverless implementation of the LTI 1.3 protocol using 
 Copy the example configuration file to create your own:
 
 ```bash
-cp wrangler.toml.example wrangler.toml
+cp wrangler.jsonc.example wrangler.jsonc
 ```
 
 ### 2. Create KV Namespaces

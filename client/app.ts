@@ -1,5 +1,5 @@
 import { ltiLaunch } from '@atomicjolt/lti-client';
-import type { LaunchSettings } from '@atomicjolt/lti-client/types';
+import type { LaunchSettings } from '@atomicjolt/lti-client';
 import { LTI_NAMES_AND_ROLES_PATH, LTI_SIGN_DEEP_LINK_PATH } from '../definitions';
 
 const launchSettings: LaunchSettings = window.LAUNCH_SETTINGS;

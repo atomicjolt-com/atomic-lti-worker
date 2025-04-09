@@ -6,13 +6,12 @@ import {
   handleInit,
   handleJwks,
   handleRedirect,
-  handleLaunch,
   handleDynamicRegistrationInit,
   handleDynamicRegistrationFinish,
   handleNamesAndRoles,
   handleSignDeepLink,
+  validateLaunchRequest,
 } from '@atomicjolt/lti-endpoints';
-import metafile from '../public/dist/metafile.json';
 import { dynamicRegistrationHtml } from './html/dynamic_registration_html';
 import {
   getToolConfiguration
@@ -30,12 +29,13 @@ import {
 import { getToolJwt } from './tool_jwt';
 import { handlePlatformResponse } from './register';
 import indexHtml from './html/index_html';
+import launchHtml from './html/launch_html';
 
 // Export durable objects
 export { OIDCStateDurableObject } from '@atomicjolt/lti-endpoints';
 
 
-const app = new Hono<{ Bindings: CloudflareBindings }>()
+const app = new Hono<{ Bindings: Env }>()
 
 app.use('/*', etag());
 
@@ -47,14 +47,23 @@ app.use('/*', async (c: Context, next: Function) => {
 app.get('/', (c) => c.html(indexHtml()));
 app.get('/up', (c) => c.json({ up: true }));
 
-const initHashedScriptName = metafile["client/app-init.ts"];
-const launchhashedScriptName = metafile["client/app.ts"];
+const initScriptName = "client/app-init.ts";
+const launchScriptName = "client/app.ts";
 
 // LTI routes
 app.get(LTI_JWKS_PATH, (c) => handleJwks(c));
-app.post(LTI_INIT_PATH, (c) => handleInit(c, initHashedScriptName));
+app.post(LTI_INIT_PATH, (c) => handleInit(c, initScriptName));
 app.post(LTI_REDIRECT_PATH, (c) => handleRedirect(c));
-app.post(LTI_LAUNCH_PATH, (c) => handleLaunch(c, launchhashedScriptName, getToolJwt));
+
+app.post(LTI_LAUNCH_PATH, async (c) => {
+  // validateLaunchRequest will throw an exception if the request is invalid
+  // and will return the idToken wrapped by access methods as well as the launch settings
+  // which allow the application to retrive values from the LTI launch
+  // const { launchSettings, idTokenWrapper } = await validateLaunchRequest(c, getToolJwt);
+  await validateLaunchRequest(c, getToolJwt);
+  return c.html(launchHtml(launchScriptName));
+});
+
 
 // LTI Dynamic Registration routes
 app.get(LTI_REGISTRATION_PATH, (c) => handleDynamicRegistrationInit(c, dynamicRegistrationHtml));

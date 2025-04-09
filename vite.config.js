@@ -1,7 +1,10 @@
-import { defineConfig } from 'vitest/config';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { cloudflare } from "@cloudflare/vite-plugin"
 
 export default defineConfig({
-  test: {
-    environment: 'miniflare',
+  plugins: [react(), cloudflare()],
+  server: {
+    allowedHosts: ['atomic-lti-worker.atomicjolt.win'],
   },
-});
+})
