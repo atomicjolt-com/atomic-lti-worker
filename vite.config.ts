@@ -3,8 +3,15 @@ import react from '@vitejs/plugin-react'
 import { cloudflare } from "@cloudflare/vite-plugin"
 
 export default defineConfig({
-  plugins: [react(), cloudflare()],
+  plugins: [
+    react(),
+    cloudflare(),
+  ],
+  build: {
+    outDir: 'dist',
+    manifest: 'manifest.json',
+  },
   server: {
-    allowedHosts: ['atomic-lti-worker.atomicjolt.win'],
+    allowedHosts: true,
   },
 })
