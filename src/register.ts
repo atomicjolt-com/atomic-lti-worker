@@ -3,7 +3,7 @@ import { RegistrationConfiguration } from "@atomicjolt/lti-types";
 
 
 export const handlePlatformResponse: HandlePlatformResponse = (registrationConfiguration: RegistrationConfiguration) => {
-  // TODO store client id or deployment id here as needed
+  // Store client id or deployment id here as needed
   // platformResponse.client_id
   // platformResponse[LTI_TOOL_CONFIGURATION].deployment_id
   console.log('--------------------------------------------------------');
