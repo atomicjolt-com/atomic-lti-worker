@@ -67,6 +67,18 @@ If your LTI platform doesn't support dynamic registration:
 
 - Update `install.json` with your tool's URLs and registration details
 
+### 4. Build your app
+
+This LTI tool is designed as a single page application (SPA).
+
+If you need/want to make changes to the code that handles the LTI launch or if you need to store or modify values server side look at the code in:
+`src/index.ts`
+
+The client code can be found in:
+`client/app.ts`
+
+This is where you will want to build out your application.
+
 ## Development
 
 ### Local Development
