@@ -1,4 +1,8 @@
 export default function viteHmrHtml() {
+  if (import.meta.env.PROD) {
+    return '';
+  }
+
   return `<script type="module">
 import RefreshRuntime from "/@react-refresh"
 RefreshRuntime.injectIntoGlobalHook(window)

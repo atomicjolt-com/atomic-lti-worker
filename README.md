@@ -22,11 +22,7 @@ Deploy a simple Hello World LTI tool to Cloudflare with one click:
 
 ### 1. Configuration
 
-Copy the example configuration file to create your own:
-
-```bash
-cp wrangler.jsonc.example wrangler.jsonc
-```
+If you used the "Deploy to Cloudflare" button your wrangler.jsonc should already be modified with the ids for new Cloudflare Resources and you can skip step #2. Otherwise you will need to modify your wrangler.jsonc wtih the values generated in step #2
 
 ### 2. Create KV Namespaces
 
@@ -50,15 +46,17 @@ npx wrangler kv:namespace create PLATFORMS
 npx wrangler kv:namespace create PLATFORMS --preview
 ```
 
-After creating the namespaces, copy the returned IDs into your `wrangler.toml` file.
+After creating the namespaces, copy the returned IDs into your `wrangler.jsonc` file.
 
 ### 3. Platform Configuration
 
 #### For Dynamic Registration
 
-If your LTI platform supports dynamic registration:
+Atomic LTI worker supports dynamic registration which makes installing the tool into your platform simple. Change the tool configuration to meet your needs which will include changing the tool name, support email, etc:
 
-- Modify `server/tool_configuration.ts` to match your tool's configuration requirements
+- Modify `definitions.ts` to match your tool's configuration requirements
+- A default tool configuration for dynamic registration is already setup but can be modified in src/config.ts as needed.
+- Configuration provided by the platform once dynamic registration is finished is provied in src/register.ts. The handlePlatformResponse callback in this file gives you the opportunity to store values like client_id as needed.
 
 Dynamic Registration URL
 `https://yourdomain.com/lti/register`
