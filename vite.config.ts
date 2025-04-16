@@ -8,10 +8,16 @@ export default defineConfig({
     cloudflare(),
   ],
   build: {
-    outDir: 'dist',
     manifest: 'manifest.json',
+    rollupOptions: {
+      input: {
+        app: '/client/app.ts',
+        appInit: '/client/app-init.ts',
+        home: '/client/home.ts',
+      }
+    }
   },
   server: {
     allowedHosts: true,
   },
-})
+});

@@ -30,10 +30,10 @@ import { getToolJwt } from './tool_jwt';
 import { handlePlatformResponse } from './register';
 import indexHtml from './html/index_html';
 import launchHtml from './html/launch_html';
+import { getClientAssetPath } from './libs/manifest';
 
 // Export durable objects
 export { OIDCStateDurableObject } from '@atomicjolt/lti-endpoints';
-
 
 const app = new Hono<{ Bindings: Env }>()
 
@@ -44,11 +44,12 @@ app.use('/*', async (c: Context, next: Function) => {
   c.header('x-frame-options', 'ALLOWALL');
 });
 
-app.get('/', (c) => c.html(indexHtml()));
+const homeScriptName = getClientAssetPath("client/home.ts");
+app.get('/', (c) => c.html(indexHtml(homeScriptName)));
 app.get('/up', (c) => c.json({ up: true }));
 
-const initScriptName = "client/app-init.ts";
-const launchScriptName = "client/app.ts";
+const initScriptName = getClientAssetPath("client/app-init.ts");
+const launchScriptName = getClientAssetPath("client/app.ts");
 
 // LTI routes
 app.get(LTI_JWKS_PATH, (c) => handleJwks(c));

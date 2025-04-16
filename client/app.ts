@@ -5,7 +5,14 @@ import { LTI_NAMES_AND_ROLES_PATH, LTI_SIGN_DEEP_LINK_PATH } from '../definition
 const launchSettings: LaunchSettings = window.LAUNCH_SETTINGS;
 ltiLaunch(launchSettings).then((valid) => {
   if (valid) {
-    document.body.innerHTML = `
+    const mainContent = document.getElementById('main-content');
+
+    if (!mainContent) {
+      console.error('Main content element not found');
+      return;
+    }
+
+    mainContent.innerHTML = `
       <h1>Hello World</h1>
     `;
 
@@ -13,7 +20,7 @@ ltiLaunch(launchSettings).then((valid) => {
 
     // Deep Linking example
     if (launchSettings.deepLinking) {
-      document.body.innerHTML += `
+      mainContent.innerHTML += `
         <h2>Deep Linking</h2>
         <button id="deep-linking-button">Deep Link</button>
         <form id="deep-linking-form" method="post">
