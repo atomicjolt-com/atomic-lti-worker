@@ -18,6 +18,15 @@ Deploy a simple Hello World LTI tool to Cloudflare with one click:
 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/atomicjolt-com/atomic-lti-worker)
 
+If you encounter errors during the one click install don't fret. Instead, follow these steps:
+
+1. clone down the newly created repository.
+2. cd into the directory and run `npm i`
+3. Run `npm run deploy`
+
+The worker should deploy into your account. You may wish to change values in definitions.ts before deploy
+to change names (the default name will atomic-lti-worker)
+
 ## Setup
 
 ### 1. Configuration
