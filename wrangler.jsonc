@@ -34,7 +34,6 @@
       "preview_id": "c767398bf02d4163bc5e81fb52ed5641"
     }
   ],
-
   "durable_objects": {
     "bindings": [
       {
@@ -43,16 +42,14 @@
       }
     ]
   },
-
   "migrations": [
     {
       "tag": "v1",
-      "new_classes": [
+      "new_sqlite_classes": [
         "OIDCStateDurableObject"
       ]
     }
   ],
-
   /**
    * Smart Placement
    * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
