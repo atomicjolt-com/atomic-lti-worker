@@ -16,8 +16,10 @@ try {
  * @returns The hashed file path from the manifest or a fallback path for development
  */
 export function getClientAssetPath(entryName: string): string {
+  console.log(`Getting client asset path for: ${entryName}`);
   // In development, Vite serves files directly without hashing
   if (Object.keys(manifestData).length === 0) {
+    console.log('Using development paths, no manifest data available');
     // Convert .ts to .js for development paths
     return entryName.replace(/\.ts$/, '.js');
   }
@@ -27,6 +29,8 @@ export function getClientAssetPath(entryName: string): string {
     // Fallback to unhashed name
     return entryName.replace(/\.ts$/, '.js');
   }
+
+  console.log(`Found entry ${entryName} in manifest, returning path: ${manifestData[entryName]}`);
 
   return manifestData[entryName];
 }

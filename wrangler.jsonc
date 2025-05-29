@@ -11,26 +11,31 @@
   "observability": {
 		"enabled": true
 	},
-
+  "routes": [
+    {
+      "pattern": "lti-worker.atomicjolt.win",
+      "custom_domain": true
+    }
+  ],
   "kv_namespaces": [
     {
       "binding": "KEY_SETS",
-      "id": "cdfcdc75c250408f8c29dffa80e2f8fa",
+      "id": "41a8c68006ef4651b8d72ce05f0e645c",
       "preview_id": "9fe1a9c64f8e40d1a5edd3998d370170"
     },
     {
       "binding": "REMOTE_JWKS",
-      "id": "31d013cc285d4710b71ff6ecb9a7188d",
+      "id": "4d92b2a084cc4e768aef23b63748a414",
       "preview_id": "70978da76aa644aeae98b5a15f8a72f2z"
     },
     {
       "binding": "CLIENT_AUTH_TOKENS",
-      "id": "0a57b542646c4befbfe29cf8302ae656",
+      "id": "76c3b0ec7d9940268d6cb8714dd66773",
       "preview_id": "eb43810941da47bb8276a7f77e40b4c6"
     },
     {
       "binding": "PLATFORMS",
-      "id": "bb25abf268c34903bcb85c259fd24a9a",
+      "id": "7e92b658a7eb449098ddf79fe07a8458",
       "preview_id": "c767398bf02d4163bc5e81fb52ed5641"
     }
   ],
