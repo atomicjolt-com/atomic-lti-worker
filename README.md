@@ -2,6 +2,13 @@
 
 A Cloudflare Workers-based solution for handling LTI 1.3 launches on the Tool side.
 
+## Demo
+
+View the home page:
+https://lti-worker.atomicjolt.win/
+
+Register a Hello World LTI tool using [Dynamic Registration](https://www.imsglobal.org/spec/lti-dr/v1p0)
+
 ## Overview
 
 This project provides a serverless implementation of the LTI 1.3 protocol using Cloudflare Workers. It handles all aspects of the Tool side of an LTI launch, including authentication, key management, and platform communication.
