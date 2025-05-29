@@ -7,7 +7,8 @@ A Cloudflare Workers-based solution for handling LTI 1.3 launches on the Tool si
 View the home page:
 https://lti-worker.atomicjolt.win/
 
-Register a Hello World LTI tool using [Dynamic Registration](https://www.imsglobal.org/spec/lti-dr/v1p0)
+Register a Hello World LTI tool using [Dynamic Registration](https://www.imsglobal.org/spec/lti-dr/v1p0).
+`https://lti-worker.atomicjolt.win/lti/register`
 
 ## Overview
 

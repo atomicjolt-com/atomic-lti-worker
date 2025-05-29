@@ -4,6 +4,9 @@ if (!main) {
   throw new Error('Main content element not found');
 }
 main.innerHTML = `
-  <h1>Hello World</h1>
-  <p>Welcome to the Atomic LTI Worker!</p>
+  <div class="hero-actions">
+    Register a Hello World LTI tool using <a href="https://www.imsglobal.org/spec/lti-dr/v1p0">Dynamic Registration</a>.
+    <h3>Dynamic Registration URL:</h3>
+    <code>https://lti-worker.atomicjolt.win/lti/register</code>
+  </div>
 `;

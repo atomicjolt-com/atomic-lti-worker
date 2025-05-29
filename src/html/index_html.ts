@@ -20,6 +20,15 @@ export default function indexHtml(scriptName: string) {
         line-height: 1.6;
       }
 
+      code {
+        background-color: #f4f4f4;
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        font-weight: 900;
+        padding: 1rem;
+      }
+
       .header {
         background-color: #000;
         padding: 1rem 0;
@@ -216,12 +225,6 @@ export default function indexHtml(scriptName: string) {
           <p class="hero-description">
             A powerful LTI tool built with modern web technologies and deployed on Cloudflare Workers.
           </p>
-          <div class="hero-actions">
-            <a href="https://github.com/atomicjolt-com/atomic-lti-worker" class="aj-btn" target="_blank" rel="noopener">
-              <i class="material-icons-outlined aj-icon">code</i>
-              View on GitHub
-            </a>
-          </div>
           <div id="main-content"></div>
         </div>
       </section>
@@ -231,6 +234,11 @@ export default function indexHtml(scriptName: string) {
           <div class="info-card">
             <h2>Open Source</h2>
             <p>MIT licensed open source project that you can freely use, modify, and distribute.</p>
+            <p>
+              <a href="https://github.com/atomicjolt-com/atomic-lti-worker" class="aj-btn" target="_blank" rel="noopener">
+                View on GitHub
+              </a>
+            </p>
           </div>
           <div class="info-card">
             <h2>Modern Stack</h2>
