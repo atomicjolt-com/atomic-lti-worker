@@ -1,14 +1,16 @@
 // Import the manifest if it exists. In development mode, this might fail
-let manifestData: Record<string, string> = {};
-try {
-  // In production, the manifest will exist
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore - Dynamic import
-  manifestData = require('manifest.json');
-} catch (e) {
-  // In development, we'll use unhashedpaths
-  console.log('No manifest.json found, using development paths');
+interface ManifestEntry {
+  file: string;
+  name: string;
+  src?: string;
+  isEntry?: boolean;
+  imports?: string[];
 }
+
+let manifestData: Record<string, ManifestEntry> = {};
+
+// In development, manifestData remains empty and we use fallback paths
+// In production, this will be populated with actual manifest data by the build process
 
 /**
  * Get the file path for a client asset from the manifest
@@ -30,9 +32,9 @@ export function getClientAssetPath(entryName: string): string {
     return entryName.replace(/\.ts$/, '.js');
   }
 
-  console.log(`Found entry ${entryName} in manifest, returning path: ${manifestData[entryName]}`);
+  console.log(`Found entry ${entryName} in manifest, returning path: ${manifestData[entryName].file}`);
 
-  return manifestData[entryName];
+  return manifestData[entryName].file;
 }
 
 /**
@@ -40,5 +42,9 @@ export function getClientAssetPath(entryName: string): string {
  * @returns A map of entry names to file paths
  */
 export function getAllClientAssets(): Record<string, string> {
-  return manifestData;
+  const result: Record<string, string> = {};
+  for (const [entryName, entry] of Object.entries(manifestData)) {
+    result[entryName] = entry.file;
+  }
+  return result;
 }
