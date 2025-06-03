@@ -31,12 +31,31 @@ ltiLaunch(launchSettings).then((valid) => {
       const deepLinkingButton = document.getElementById('deep-linking-button');
       if (deepLinkingButton) {
         deepLinkingButton.addEventListener('click', () => {
-          const deepLink = {
-            type: 'html',
-            html: '<h2>Just saying hi!</h2>',
-            title: 'Hello World',
-            text: 'A simple hello world example',
+
+          let deepLink: any = {
+            type: 'image',
+            title: 'Atomic Jolt',
+            text: 'Atomic Jolt Logo',
+            url: 'https://atomic-lti-worker.atomicjolt.win/images/atomicjolt_name.png',
           };
+
+          if (launchSettings.deepLinking?.accept_types) {
+            if (launchSettings.deepLinking.accept_types.indexOf('html') >= 0) {
+              deepLink = {
+                type: 'html',
+                html: '<h2>Just saying hi!</h2>',
+                title: 'Hello World',
+                text: 'A simple hello world example',
+              };
+            } else if (launchSettings.deepLinking.accept_types.indexOf('link') >= 0) {
+              deepLink = {
+                type: 'link',
+                title: 'Atomic Jolt',
+                text: 'Atomic Jolt Home Page',
+                url: 'https://atomicjolt.com',
+              };
+            }
+          }
 
           fetch('/' + LTI_SIGN_DEEP_LINK_PATH, {
             method: 'POST',
