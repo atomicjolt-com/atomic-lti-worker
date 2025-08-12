@@ -18,7 +18,7 @@ describe('app.ts', () => {
 
   beforeEach(() => {
     // Set up DOM environment
-    dom = new JSDOM('<!DOCTYPE html><body></body>', {
+    dom = new JSDOM('<!DOCTYPE html><body><div id="main-content"></div></body>', {
       url: 'http://localhost',
       runScripts: 'dangerously'
     });
@@ -71,7 +71,8 @@ describe('app.ts', () => {
 
     // Wait for promises to resolve
     await vi.waitFor(() => {
-      expect(document.body.innerHTML).toContain('<h1>Hello World</h1>');
+      const mainContent = document.getElementById('main-content');
+      expect(mainContent?.innerHTML).toContain('<h1>Hello World</h1>');
     });
 
     // Check that ltiLaunch was called with launch settings
