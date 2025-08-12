@@ -1,7 +1,9 @@
-import type { Context } from 'hono';
+import type { Context, Next } from 'hono';
 import { Hono } from 'hono';
 import { HTTPException } from 'hono/http-exception';
 import { etag } from 'hono/etag';
+import { cors } from 'hono/cors';
+import { logger } from 'hono/logger';
 import {
   handleInit,
   handleJwks,
@@ -35,21 +37,74 @@ import { getClientAssetPath } from './libs/manifest';
 // Export durable objects
 export { OIDCStateDurableObject } from '@atomicjolt/lti-endpoints';
 
-const app = new Hono<{ Bindings: Env }>()
+// Define context variables type
+type Variables = {
+  requestId: string;
+};
 
-app.use('/*', etag());
+const app = new Hono<{ Bindings: Env; Variables: Variables }>()
 
-app.use('/*', async (c: Context, next: Function) => {
-  await next()
-  c.header('x-frame-options', 'ALLOWALL');
-});
-
+// Initialize asset paths once at startup
 const homeScriptName = getClientAssetPath("client/home.ts");
-app.get('/', (c) => c.html(indexHtml(homeScriptName)));
-app.get('/up', (c) => c.json({ up: true }));
-
 const initScriptName = getClientAssetPath("client/app-init.ts");
 const launchScriptName = getClientAssetPath("client/app.ts");
+
+// Request logging middleware
+app.use('/*', logger());
+
+// ETag middleware for caching
+app.use('/*', etag());
+
+// CORS configuration for LTI services
+app.use('/lti/*', cors({
+  origin: '*', // LTI tools need to work across different LMS domains
+  allowMethods: ['GET', 'POST', 'OPTIONS'],
+  allowHeaders: ['Content-Type', 'Authorization'],
+  exposeHeaders: ['Content-Length', 'X-Request-Id'],
+  maxAge: 86400,
+  credentials: true,
+}));
+
+// Security headers middleware
+app.use('/*', async (c: Context, next: Next) => {
+  // Generate request ID for tracking
+  const requestId = crypto.randomUUID();
+  c.set('requestId', requestId);
+  c.header('X-Request-Id', requestId);
+
+  await next();
+
+  // Security headers
+  c.header('X-Frame-Options', 'ALLOWALL'); // Required for LTI iframe embedding
+  c.header('X-Content-Type-Options', 'nosniff');
+  c.header('X-XSS-Protection', '1; mode=block');
+  c.header('Referrer-Policy', 'strict-origin-when-cross-origin');
+
+  // Content Security Policy - adjust as needed
+  const csp = [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval'", // Needed for some LMS platforms
+    "style-src 'self' 'unsafe-inline'",
+    "img-src 'self' data: https:",
+    "font-src 'self' data:",
+    "connect-src 'self'",
+    "frame-ancestors *" // Allow embedding in any domain for LTI
+  ].join('; ');
+  c.header('Content-Security-Policy', csp);
+});
+
+// Health check and monitoring endpoints
+app.get('/', (c) => c.html(indexHtml(homeScriptName)));
+
+app.get('/up', (c) => {
+  const requestId = c.get('requestId') || 'unknown';
+  return c.json({
+    up: true,
+    version: '1.3.3',
+    timestamp: new Date().toISOString(),
+    requestId,
+  });
+});
 
 // LTI routes
 app.get(LTI_JWKS_PATH, (c) => handleJwks(c));
@@ -76,15 +131,51 @@ app.get(LTI_NAMES_AND_ROLES_PATH, (c) => handleNamesAndRoles(c));
 app.post(LTI_SIGN_DEEP_LINK_PATH, (c) => handleSignDeepLink(c));
 
 // Error handling
-app.onError((err, c) => {
-  console.error('handling on error', err);
+app.onError((err: Error, c) => {
+  const requestId = c.get('requestId') || 'unknown';
+  const timestamp = new Date().toISOString();
+
+  // Structured error logging
+  const errorLog = {
+    requestId,
+    timestamp,
+    method: c.req.method,
+    path: c.req.path,
+    error: {
+      name: err.name,
+      message: err.message,
+      stack: err.stack
+    }
+  };
+
+  console.error('Request error:', JSON.stringify(errorLog));
+
   if (err instanceof HTTPException) {
-    return err.getResponse()
+    return err.getResponse();
   }
-  console.error(`${err}`)
-  return c.text(err.toString());
+
+  // Determine if it's a client or server error
+  const isClientError = err.message.includes('validation') ||
+    err.message.includes('invalid') ||
+    err.message.includes('required');
+
+  const statusCode = isClientError ? 400 : 500;
+  const errorMessage = isClientError ? err.message : 'Internal server error';
+
+  return c.json({
+    error: errorMessage,
+    requestId,
+    timestamp
+  }, statusCode);
 });
 
-app.notFound(c => c.text('Not found', 404));
+app.notFound((c) => {
+  const requestId = c.get('requestId') || 'unknown';
+  return c.json({
+    error: 'Not found',
+    path: c.req.path,
+    requestId
+  }, 404);
+});
 
 export default app;
