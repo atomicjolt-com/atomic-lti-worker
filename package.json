@@ -13,8 +13,8 @@
     "types": "wrangler types"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "^1.11.4",
-    "@cloudflare/vitest-pool-workers": "^0.8.63",
+    "@cloudflare/vite-plugin": "^1.11.5",
+    "@cloudflare/vitest-pool-workers": "^0.8.64",
     "@types/jsdom": "^21.1.7",
     "@typescript-eslint/eslint-plugin": "^8.39.1",
     "@typescript-eslint/parser": "^8.39.1",
@@ -25,15 +25,15 @@
     "prettier": "^3.6.2",
     "typescript": "^5.9.2",
     "vitest": "3.1.4",
-    "wrangler": "^4.29.1"
+    "wrangler": "^4.30.0"
   },
   "dependencies": {
     "@atomicjolt/lti-client": "^2.7.0",
-    "@atomicjolt/lti-endpoints": "^3.2.12",
+    "@atomicjolt/lti-endpoints": "^3.3.0",
     "@atomicjolt/lti-server": "^3.3.2",
     "@atomicjolt/lti-types": "^1.2.7",
     "hono": "^4.9.1",
-    "i18next": "^25.3.4",
+    "i18next": "^25.3.6",
     "i18next-browser-languagedetector": "^8.2.0",
     "jose": "^6.0.12"
   }
