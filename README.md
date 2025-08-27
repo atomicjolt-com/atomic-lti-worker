@@ -96,6 +96,14 @@ The client code can be found in:
 
 This is where you will want to build out your application.
 
+### 5. Update configuration values
+
+In scripts/inject-manifest.js look for 'atomic_lti_worker' and change it to match the folder name of your project. This will be the folder in the 'dist' directory where the cloudflare worker will be written for production
+
+Search the project for 'Atomic LTI Worker' and change values to match your project name.
+
+Search the project for 'atomic-lti-worker' and update values and urls to match your project.
+
 ## Development
 
 ### Local Development
