@@ -96,6 +96,9 @@ The client code can be found in:
 
 This is where you will want to build out your application.
 
+The server will pass settings to the client using `window.LAUNCH_SETTINGS` which by default is of type `LaunchSettings`. If you need to pass additonal data to the client LaunchSettings can be extended to include any additional required information. The most useful values provided by `window.LAUNCH_SETTINGS` will be `window.LAUNCH_SETTINGS.jwt` and ``window.LAUNCH_SETTINGS.deepLinking`. API calls back to the server will require the jwt be passed in the Authorization header. Examples of how to use `window.LAUNCH_SETTINGS` can be seen in client/app.ts. client/app.ts also contains a basic example of how to use deep linking and how to call the names and roles service.
+
+
 ### 5. Update configuration values
 
 In scripts/inject-manifest.js look for 'atomic_lti_worker' and change it to match the folder name of your project. This will be the folder in the 'dist' directory where the cloudflare worker will be written for production
