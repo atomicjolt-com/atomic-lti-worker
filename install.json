@@ -9,95 +9,95 @@
   ],
   "extensions": [
     {
-      "domain": "https://atomic-lti-worker.atomicjolt.win",
+      "domain": "https://lti-worker.atomicjolt.win",
       "tool_id": "Atomic LTI Worker",
       "platform": "canvas.instructure.com",
       "settings": {
         "text": "Atomic LTI Worker",
-        "icon_url": "https://atomic-lti-worker.atomicjolt.win/atomicjolt.png",
+        "icon_url": "https://lti-worker.atomicjolt.win/atomicjolt.png",
         "placements": [
           {
             "text": "Atomic LTI Worker",
             "enabled": true,
-            "icon_url": "https://atomic-lti-worker.atomicjolt.win/atomicjolt.png",
+            "icon_url": "https://lti-worker.atomicjolt.win/atomicjolt.png",
             "placement": "editor_button",
             "visibility": "admins",
             "message_type": "LtiDeepLinkingRequest",
-            "target_link_uri": "https://atomic-lti-worker.atomicjolt.win/lti/launch",
+            "target_link_uri": "https://lti-worker.atomicjolt.win/lti/launch",
             "canvas_icon_class": "icon-lti"
           },
           {
             "text": "Atomic LTI Worker",
             "enabled": true,
-            "icon_url": "https://atomic-lti-worker.atomicjolt.win/atomicjolt.png",
+            "icon_url": "https://lti-worker.atomicjolt.win/atomicjolt.png",
             "placement": "course_navigation",
             "visibility": "admins",
             "message_type": "LtiResourceLinkRequest",
-            "target_link_uri": "https://atomic-lti-worker.atomicjolt.win/lti/launch",
+            "target_link_uri": "https://lti-worker.atomicjolt.win/lti/launch",
             "canvas_icon_class": "icon-lti"
           },
           {
             "text": "Atomic LTI Worker",
             "enabled": true,
-            "icon_url": "https://atomic-lti-worker.atomicjolt.win/atomicjolt.png",
+            "icon_url": "https://lti-worker.atomicjolt.win/atomicjolt.png",
             "placement": "user_navigation",
             "message_type": "LtiResourceLinkRequest",
-            "target_link_uri": "https://atomic-lti-worker.atomicjolt.win/lti/launch"
+            "target_link_uri": "https://lti-worker.atomicjolt.win/lti/launch"
           },
           {
             "text": "Atomic LTI Worker",
             "enabled": true,
-            "icon_url": "https://atomic-lti-worker.atomicjolt.win/atomicjolt.png",
+            "icon_url": "https://lti-worker.atomicjolt.win/atomicjolt.png",
             "placement": "migration_selection",
             "message_type": "LtiDeepLinkingRequest",
             "selection_width": 892,
-            "target_link_uri": "https://atomic-lti-worker.atomicjolt.win/lti/launch",
+            "target_link_uri": "https://lti-worker.atomicjolt.win/lti/launch",
             "selection_height": 800
           },
           {
             "text": "Atomic LTI Worker",
             "enabled": true,
-            "icon_url": "https://atomic-lti-worker.atomicjolt.win/atomicjolt.png",
+            "icon_url": "https://lti-worker.atomicjolt.win/atomicjolt.png",
             "placement": "link_selection",
             "message_type": "LtiDeepLinkingRequest",
             "selection_width": 892,
-            "target_link_uri": "https://atomic-lti-worker.atomicjolt.win/lti/launch",
+            "target_link_uri": "https://lti-worker.atomicjolt.win/lti/launch",
             "selection_height": 800
           },
           {
             "text": "Atomic LTI Worker",
             "enabled": true,
-            "icon_url": "https://atomic-lti-worker.atomicjolt.win/atomicjolt.png",
+            "icon_url": "https://lti-worker.atomicjolt.win/atomicjolt.png",
             "placement": "homework_submission",
             "message_type": "LtiDeepLinkingRequest",
             "selection_width": 892,
-            "target_link_uri": "https://atomic-lti-worker.atomicjolt.win/lti/launch",
+            "target_link_uri": "https://lti-worker.atomicjolt.win/lti/launch",
             "selection_height": 800
           },
           {
             "text": "Atomic LTI Worker",
             "enabled": true,
-            "icon_url": "https://atomic-lti-worker.atomicjolt.win/atomicjolt.png",
+            "icon_url": "https://lti-worker.atomicjolt.win/atomicjolt.png",
             "placement": "assignment_selection",
             "message_type": "LtiDeepLinkingRequest",
             "selection_width": 892,
-            "target_link_uri": "https://atomic-lti-worker.atomicjolt.win/lti/launch",
+            "target_link_uri": "https://lti-worker.atomicjolt.win/lti/launch",
             "selection_height": 800
           },
           {
             "text": "Atomic LTI Worker",
             "enabled": true,
-            "icon_url": "https://atomic-lti-worker.atomicjolt.win/atomicjolt.png",
+            "icon_url": "https://lti-worker.atomicjolt.win/atomicjolt.png",
             "placement": "account_navigation",
             "message_type": "LtiResourceLinkRequest",
-            "target_link_uri": "https://atomic-lti-worker.atomicjolt.win/lti/launch"
+            "target_link_uri": "https://lti-worker.atomicjolt.win/lti/launch"
           }
         ],
         "consumer_key": "ltiworker",
         "consumer_secret": "6d6bd2f1c2adb3b65ef1f7ba12eb3af7c5ab313c8b663c75e9633690c1a6f8aec532738b86ec7a9c0e67b9e44d7da1aa1ddfd3fe3b613dcfdc28d94be87b31f2",
         "content_migration": {
-          "export_start_url": "https://atomic-lti-worker.atomicjolt.win/api/ims_exports.json",
-          "import_start_url": "https://atomic-lti-worker.atomicjolt.win/api/ims_imports.json"
+          "export_start_url": "https://lti-worker.atomicjolt.win/api/ims_exports.json",
+          "import_start_url": "https://lti-worker.atomicjolt.win/api/ims_imports.json"
         }
       },
       "privacy_level": "public"
@@ -118,7 +118,7 @@
     "canvas_user_timezone": "$Person.address.timezone",
     "canvas_root_account_id": "$Canvas.rootAccount.id"
   },
-  "public_jwk_url": "https://atomic-lti-worker.atomicjolt.win/lti/jwks",
-  "target_link_uri": "https://atomic-lti-worker.atomicjolt.win/lti/launch",
-  "oidc_initiation_url": "https://atomic-lti-worker.atomicjolt.win/lti/init"
+  "public_jwk_url": "https://lti-worker.atomicjolt.win/lti/jwks",
+  "target_link_uri": "https://lti-worker.atomicjolt.win/lti/launch",
+  "oidc_initiation_url": "https://lti-worker.atomicjolt.win/lti/init"
 }

@@ -36,7 +36,7 @@ ltiLaunch(launchSettings).then((valid) => {
             type: 'image',
             title: 'Atomic Jolt',
             text: 'Atomic Jolt Logo',
-            url: 'https://atomic-lti-worker.atomicjolt.win/images/atomicjolt_name.png',
+            url: 'https://lti-worker.atomicjolt.win/images/atomicjolt_name.png',
           };
 
           if (launchSettings.deepLinking?.accept_types) {
