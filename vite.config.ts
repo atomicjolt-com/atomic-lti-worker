@@ -22,6 +22,7 @@ export default defineConfig({
     hmr: {
       host: 'localhost',
     },
-    allowedHosts: ['.atomicjolt.xyz', 'worker.atomicjolt.xyz', 'localhost'],
+    port: 6100,
+    allowedHosts: ['.atomicjolt.win', '.atomicjolt.xyz', 'worker.atomicjolt.xyz', 'localhost'],
   },
 });
