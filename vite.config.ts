@@ -18,6 +18,10 @@ export default defineConfig({
     }
   },
   server: {
-    allowedHosts: true,
+    host: true,
+    hmr: {
+      host: 'localhost',
+    },
+    allowedHosts: ['.atomicjolt.xyz', 'worker.atomicjolt.xyz', 'localhost'],
   },
 });
